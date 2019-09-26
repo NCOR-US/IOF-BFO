@@ -70,6 +70,14 @@ cco:term_editor rdf:type owl:AnnotationProperty ;
 
 
 #################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.obolibrary.org/obo/RO_0000087
+obo:RO_0000087 rdf:type owl:ObjectProperty .
+
+
+#################################################################
 #    Classes
 #################################################################
 
@@ -137,7 +145,8 @@ cco:DirectiveInformationContentEntity rdf:type owl:Class ;
 
 
 ###  http://www.ontologyrepository.com/CommonCoreOntologies/GroupOfAgents
-cco:GroupOfAgents rdf:type owl:Class .
+cco:GroupOfAgents rdf:type owl:Class ;
+                  rdfs:subClassOf obo:BFO_0000027 .
 
 
 ###  http://www.ontologyrepository.com/CommonCoreOntologies/InformationContentEntity
@@ -179,7 +188,7 @@ cco:Tool rdf:type owl:Class ;
          rdfs:label "Tool" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000000
+###  https://www.industrialontologies.org/core/iof_00000000
 :iof_00000000 rdf:type owl:Class ;
               owl:equivalentClass [ rdf:type owl:Restriction ;
                                     owl:onProperty obo:RO_0000087 ;
@@ -194,21 +203,21 @@ cco:Tool rdf:type owl:Class ;
               rdfs:label "Product" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000001
+###  https://www.industrialontologies.org/core/iof_00000001
 :iof_00000001 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000002 ;
               cco:definition "“feature” (like “characteristic”) is an umbrella term including in its coverage domain: qualities, parts of a material product (for example, chromium plating), a hole within a material product (for example, a button hole), as well as information entities, as well as metalevel characteristics such as availability, reliability, average dimensions, as well as characteristics of processes such as rate, continuity, and so forth." ;
               rdfs:label "Feature"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000002
+###  https://www.industrialontologies.org/core/iof_00000002
 :iof_00000002 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000013 ;
               cco:definition "def. planned process that is part of a product production process and is prescribed by an operation specification."@en ;
               rdfs:label "Operation"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000004
+###  https://www.industrialontologies.org/core/iof_00000004
 :iof_00000004 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000040 ;
               obo:IAO_0000602 "instance-of(​x,​ portion-of-input-material, ​t)​ ≡ ​∃​y(instance-of(​y,​ input-material-role, ​t)​ & has-role(​x,​ ​y​, ​t)​ )" ;
@@ -216,21 +225,21 @@ cco:Tool rdf:type owl:Class ;
               rdfs:label "Portion of Input Material"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000005
+###  https://www.industrialontologies.org/core/iof_00000005
 :iof_00000005 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000061 ;
               cco:definition "def. plan specification that is part of an operation specification."@en ;
               rdfs:label "Step Specification"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000006
+###  https://www.industrialontologies.org/core/iof_00000006
 :iof_00000006 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000041 ;
               cco:definition "def. material artifact that has a mechanical system as part."@en ;
               rdfs:label "Machine"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000007
+###  https://www.industrialontologies.org/core/iof_00000007
 :iof_00000007 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000009 ;
               cco:definition "tbd" ;
@@ -238,14 +247,14 @@ cco:Tool rdf:type owl:Class ;
               rdfs:label "Engineered System"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000008
+###  https://www.industrialontologies.org/core/iof_00000008
 :iof_00000008 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000007 ;
               cco:definition "def. engineered system that realizes its function through the use of power to apply forces."@en ;
               rdfs:label "Mechanical System"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000009
+###  https://www.industrialontologies.org/core/iof_00000009
 :iof_00000009 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000027 ;
               cco:definition "def. object aggregate whose member parts are causally integrated." ;
@@ -253,28 +262,28 @@ cco:Tool rdf:type owl:Class ;
               rdfs:label "System"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000010
+###  https://www.industrialontologies.org/core/iof_00000010
 :iof_00000010 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000016 ;
               cco:definition "TBD" ;
               rdfs:label "Workpiece"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000011
+###  https://www.industrialontologies.org/core/iof_00000011
 :iof_00000011 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000013 ;
               cco:definition "tbd " ;
               rdfs:label "Act of Purchasing"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000012
+###  https://www.industrialontologies.org/core/iof_00000012
 :iof_00000012 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000013 ;
               cco:definition "tbd" ;
               rdfs:label "Act of Selling"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000013
+###  https://www.industrialontologies.org/core/iof_00000013
 :iof_00000013 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000015 ;
               obo:IAO_0000602 "instance-of(x, action, t) ≡ ∃y (instance-of(y, agent, t) & has-agent (x, y, t))" ;
@@ -282,7 +291,7 @@ cco:Tool rdf:type owl:Class ;
               rdfs:label "Action" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000014
+###  https://www.industrialontologies.org/core/iof_00000014
 :iof_00000014 rdf:type owl:Class ;
               rdfs:subClassOf cco:Agent ;
               obo:IAO_0000602 """
@@ -302,7 +311,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Agent" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000015
+###  https://www.industrialontologies.org/core/iof_00000015
 :iof_00000015 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000007 ;
               cco:definition "def. engineered system that is the specified output of a manufacturing process."@en ;
@@ -310,26 +319,26 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Manufactured System"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000016
+###  https://www.industrialontologies.org/core/iof_00000016
 :iof_00000016 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000027 ;
               rdfs:comment "TBD" ;
               rdfs:label "Assembly" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000017
+###  https://www.industrialontologies.org/core/iof_00000017
 :iof_00000017 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000015 ;
               rdfs:label "Assembly Process" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000018
+###  https://www.industrialontologies.org/core/iof_00000018
 :iof_00000018 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000015 ;
               rdfs:label "Basic Economic Transaction" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000019
+###  https://www.industrialontologies.org/core/iof_00000019
 :iof_00000019 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000015 ;
               obo:IAO_0000602 "business-process(​x)​ → planned-process(​x​) & ​∃​y​∃​f​ (organization(​y​) & has-function(​y,​ ​f​) & realizes(​x,​ ​f​))" ;
@@ -338,7 +347,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Business Process" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000020
+###  https://www.industrialontologies.org/core/iof_00000020
 :iof_00000020 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000016 ;
               cco:definition "tbd" ;
@@ -346,14 +355,14 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Capability" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000021
+###  https://www.industrialontologies.org/core/iof_00000021
 :iof_00000021 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000016 ;
               cco:definition "TBD" ;
               rdfs:label "Completed Assembly"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000022
+###  https://www.industrialontologies.org/core/iof_00000022
 :iof_00000022 rdf:type owl:Class ;
               owl:equivalentClass [ rdf:type owl:Restriction ;
                                     owl:onProperty obo:RO_0000087 ;
@@ -366,14 +375,14 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Component"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000023
+###  https://www.industrialontologies.org/core/iof_00000023
 :iof_00000023 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000023 ;
               cco:definition "def. role inhering in a material artifact that is designed to be a proper continuant part of some material artifact." ;
               rdfs:label "Component Role" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000024
+###  https://www.industrialontologies.org/core/iof_00000024
 :iof_00000024 rdf:type owl:Class ;
               owl:equivalentClass [ rdf:type owl:Restriction ;
                                     owl:onProperty obo:RO_0000087 ;
@@ -385,7 +394,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Customer"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000025
+###  https://www.industrialontologies.org/core/iof_00000025
 :iof_00000025 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000023 ;
               obo:IAO_0000602 "instance-of(​x​, customer-role, ​t)​ ≡ ​∃​y​, ​z(​ agent(​y​, ​t)​ & has-role(​x,​ ​y​, ​t)​ & ∃w​ (​ instance-of(​w,​ act-of-purchasing, ​t)​ & agent-in(y​ ,​ ​w​, ​t)​ ))" ;
@@ -393,7 +402,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Customer Role" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000026
+###  https://www.industrialontologies.org/core/iof_00000026
 :iof_00000026 rdf:type owl:Class ;
               rdfs:subClassOf cco:DirectiveInformationContentEntity ;
               obo:IAO_0000602 "design(​x)​ →directive information content entity(​x​)&​∃​x1​,​ ​x2​,​ ...,​x​n∀​ ​i(​product requirement(​xi​ )​ & part-of(​x​i,​ ​x)​ ))" ;
@@ -404,21 +413,21 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Design" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000027
+###  https://www.industrialontologies.org/core/iof_00000027
 :iof_00000027 rdf:type owl:Class ;
               rdfs:subClassOf cco:DescriptiveInformationContentEntity ;
               cco:definition "def. descriptive information content entity that describes some feature." ;
               rdfs:label "Feature Description" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000028
+###  https://www.industrialontologies.org/core/iof_00000028
 :iof_00000028 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000045 ;
               cco:definition "tbd" ;
               rdfs:label "Fixture"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000029
+###  https://www.industrialontologies.org/core/iof_00000029
 :iof_00000029 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000023 ;
               obo:IAO_0000602 "instance-of(​x,​ input-material-role, ​t)​ ≡ role(​x)​ & ​∃y​ ​,​w​,​z(​ instance-of(​y​, material-entity, ​t)​ & has-role(​y​, ​x,​ ​t​) & has-capability(​y​, ​w​) & ​∀z​ (realizes(​z​, ​w)​ → & manufacturing-process(​z​) & has-specified-input (​z​, ​y)​ ))" ;
@@ -426,7 +435,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Input Material Role" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000030
+###  https://www.industrialontologies.org/core/iof_00000030
 :iof_00000030 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000016 ;
               obo:IAO_0000602 "instance-of(x, action, t) → ∃y, t′(instance-of(y, intention, t′) & realizes (x, y) & (precedes(t′, t) ˅ first-instant(t′, t)))" ;
@@ -436,27 +445,27 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Intention" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000031
+###  https://www.industrialontologies.org/core/iof_00000031
 :iof_00000031 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000015 ;
               rdfs:label "Maintenance Process" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000032
+###  https://www.industrialontologies.org/core/iof_00000032
 :iof_00000032 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000041 ;
               cco:definition "tbd" ;
               rdfs:label "Manufactured Product"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000034
+###  https://www.industrialontologies.org/core/iof_00000034
 :iof_00000034 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000015 ;
               cco:definition "def. planned process that has agent some manufacturing enterprise, where the agent realizes the planned processes of the enterprise." ;
               rdfs:label "Manufacturing Enterprise Process" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000035
+###  https://www.industrialontologies.org/core/iof_00000035
 :iof_00000035 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000041 ;
               obo:IAO_0000602 "instance-of(​x​,manufacturing-machine,​t)​ ≡instance-of(​x​,machine,​t)​ & ∃y​ (has-function(​x​, ​y)​ & ​∀z​ (realizes(​f,​ ​z​) → manufacturing-process(​z​)))" ;
@@ -464,7 +473,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Manufacturing Machine"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000036
+###  https://www.industrialontologies.org/core/iof_00000036
 :iof_00000036 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000015 ;
               obo:IAO_0000602 "manufacturing-process(​x)​ → ​∃​y​(product-production-process(​y​) & occurrent-part(​x,​ ​y)​ )" ;
@@ -472,14 +481,14 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Manufacturing Process" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000037
+###  https://www.industrialontologies.org/core/iof_00000037
 :iof_00000037 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000049 ;
               cco:definition "def. plan specification, consisting of a collection of directive information content entities as parts, that prescribes a product production process to create some product."@en ;
               rdfs:label "Manufacturing Process Plan"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000038
+###  https://www.industrialontologies.org/core/iof_00000038
 :iof_00000038 rdf:type owl:Class ;
               owl:equivalentClass [ rdf:type owl:Restriction ;
                                     owl:onProperty obo:RO_0000087 ;
@@ -491,7 +500,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Manufacturing Resource" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000039
+###  https://www.industrialontologies.org/core/iof_00000039
 :iof_00000039 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000023 ;
               obo:IAO_0000602 "instance-of(x, manufacturing-resource-role, t) ≡ ∃y(instance-of(y, continuant, t) & has-role(y, x, t) & ∃d(instance-of(d, disposition, t) & has-disposition(y, d, t)) & ∀p((process(p) & realizes(p, d)) → manufacturing-enterprise-process(p)))" ;
@@ -499,7 +508,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Manufacturing Resource Role" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000040
+###  https://www.industrialontologies.org/core/iof_00000040
 :iof_00000040 rdf:type owl:Class ;
               rdfs:subClassOf cco:Artifact ;
               obo:IAO_0000602 "Manufacturing tool(​x)​ ≡material-entity(​x​)&​∃​f​(function(​f)​ &has-function(​x​,​f)​ & ∀y​ (realizes(​y​, ​f)​ → manufacturing process (​y​)))" ;
@@ -507,14 +516,14 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Manufacturing Tool" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000041
+###  https://www.industrialontologies.org/core/iof_00000041
 :iof_00000041 rdf:type owl:Class ;
               rdfs:subClassOf cco:Artifact ;
               cco:definition "def. object that was designed by some agent to realize some function." ;
               rdfs:label "Material Artifact" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000042
+###  https://www.industrialontologies.org/core/iof_00000042
 :iof_00000042 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000038 ;
               obo:IAO_0000602 "instance-of(​x,​ material-resource, ​t)​ ≡ instance-of(​x​, ​manufacturing-resource, ​t)​ & instance-of(​x,​ material-entity, ​t)​" ;
@@ -523,7 +532,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Material Resource"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000043
+###  https://www.industrialontologies.org/core/iof_00000043
 :iof_00000043 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000020 ;
               obo:IAO_0000602 "measured-product-quality(​x)​ ≡ specifically-dependent-continuant(​x)​ & ​∃​y(​ product(​y​) & inheres-in(​x​, ​y​)) & ​∃​z(measurement-result(​z)​ & is-measured-by(​x​, ​z)​ )" ;
@@ -532,14 +541,14 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Measured Product Quality" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000044
+###  https://www.industrialontologies.org/core/iof_00000044
 :iof_00000044 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000061 ;
               cco:definition "def. plan specification that specifies an operation, the manufacturing resources required to perform the operation, and has parts, some partially-ordered sequence of step specifications."@en ;
               rdfs:label "Operation Specification"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000045
+###  https://www.industrialontologies.org/core/iof_00000045
 :iof_00000045 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000041 ;
               cco:definition "def. primitive term that refers to a material artifact that is used to realize some action (primitive term)."@en ;
@@ -547,7 +556,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Piece of Equipment"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000046
+###  https://www.industrialontologies.org/core/iof_00000046
 :iof_00000046 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000045 ;
               obo:IAO_0000602 "piece of manufacturing equipment(​x)​ ≡ piece of equipment(​x)​ &​∃​f​(has-function(​x​,​f)​ & ∀p​ (process(​p)​ & realizes(​p,​ ​f​) → manufacturing process(p))" ;
@@ -555,7 +564,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Piece of Manufacturing Equipment"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000047
+###  https://www.industrialontologies.org/core/iof_00000047
 :iof_00000047 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000015 ;
               obo:IAO_0000602 "product-production-process(​x​) ≡ ​∃​y(continuant(​y​) & has-output(​x,​ ​y)​ & ∃t​ ​∃​t​′(exists-at(​y,​ ​t​) & precedes(​t′​ , ​t)​ & ​¬​exists at(y​ ​, ​t′​ )" ;
@@ -564,7 +573,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
               rdfs:label "Product Production Process" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000048
+###  https://www.industrialontologies.org/core/iof_00000048
 :iof_00000048 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000050 ;
               obo:IAO_0000602 """For every plan there is some plan specification that precedes the plan.		
@@ -577,7 +586,7 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
               rdfs:label "Plan Intention"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000049
+###  https://www.industrialontologies.org/core/iof_00000049
 :iof_00000049 rdf:type owl:Class ;
               rdfs:subClassOf cco:PlanSpecification ;
               cco:definition "def. a specification with action specifications and objective specifications as parts." ;
@@ -585,21 +594,21 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
               rdfs:label "Plan" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000050
+###  https://www.industrialontologies.org/core/iof_00000050
 :iof_00000050 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000030 ;
               cco:definition "tbd" ;
               rdfs:label "Intention to Perform"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000051
+###  https://www.industrialontologies.org/core/iof_00000051
 :iof_00000051 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000056 ;
               cco:definition "tbd" ;
               rdfs:label "Product Requirement"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000052
+###  https://www.industrialontologies.org/core/iof_00000052
 :iof_00000052 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000023 ;
               cco:definition "def. a role inhering in an entity that is the specified output of a product production process." ;
@@ -609,7 +618,7 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
               rdfs:label "Product Role" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000053
+###  https://www.industrialontologies.org/core/iof_00000053
 :iof_00000053 rdf:type owl:Class ;
               owl:equivalentClass [ rdf:type owl:Restriction ;
                                     owl:onProperty obo:RO_0000087 ;
@@ -622,7 +631,7 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
               rdfs:label "Prospective Customer"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000054
+###  https://www.industrialontologies.org/core/iof_00000054
 :iof_00000054 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000023 ;
               obo:IAO_0000602 "instance-of(x, prospective-customer-role, t) → ∃y, z(agent(y, t) & has-role(x, y, t) &(has-disposition(y, z, t) & ∀w(realizes(w, z) → ∃t′(instance-of(w, purchasing-act, t′) & precedes(t, t′))" ;
@@ -630,7 +639,7 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
               rdfs:label "Prospective Customer Role" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000055
+###  https://www.industrialontologies.org/core/iof_00000055
 :iof_00000055 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000061 ;
               obo:IAO_0000602 "quality-specification(​x)​ ≡ specification(​x)​ & ​∃​Q(specifies(​x,​ Q) & ​∀q​ (​ instance-of(​q,​ Q) → quality(​q​)))" ;
@@ -639,14 +648,14 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
               rdfs:label "Quality Specification"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000056
+###  https://www.industrialontologies.org/core/iof_00000056
 :iof_00000056 rdf:type owl:Class ;
               rdfs:subClassOf cco:DirectiveInformationContentEntity ;
               cco:definition "tbd" ;
               rdfs:label "Requirement" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000057
+###  https://www.industrialontologies.org/core/iof_00000057
 :iof_00000057 rdf:type owl:Class ;
               owl:equivalentClass [ rdf:type owl:Restriction ;
                                     owl:onProperty obo:RO_0000087 ;
@@ -657,7 +666,7 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
               rdfs:label "Purchaser"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000058
+###  https://www.industrialontologies.org/core/iof_00000058
 :iof_00000058 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000023 ;
               obo:IAO_0000602 "instance-of(​x,​ raw-material-role, ​t)​ ≡ role(​x​) & ​∃​y​(instance-of(​y​, material-entity, ​t)​ & has-role(​y,​ ​x​, ​t)​ & ¬ ​∃​z(​ manufacturing-process(​z)​ & has-specified-input(​z,​ ​y​))" ;
@@ -665,7 +674,7 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
               rdfs:label "Raw Material Role" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000059
+###  https://www.industrialontologies.org/core/iof_00000059
 :iof_00000059 rdf:type owl:Class ;
               owl:equivalentClass [ rdf:type owl:Restriction ;
                                     owl:onProperty obo:RO_0000087 ;
@@ -676,14 +685,14 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
               rdfs:label "Seller"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000060
+###  https://www.industrialontologies.org/core/iof_00000060
 :iof_00000060 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000015 ;
               cco:definition "tbd" ;
               rdfs:label "Step" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000061
+###  https://www.industrialontologies.org/core/iof_00000061
 :iof_00000061 rdf:type owl:Class ;
               rdfs:subClassOf cco:DirectiveInformationContentEntity ;
               obo:IAO_0000602 "specifies: primitive relation between a specification and that which it species. specifies(​x​,​y​)≡specification(​x)​ &prescribes(​x​,​y)​" ;
@@ -691,7 +700,7 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
               rdfs:label "Specification" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000062
+###  https://www.industrialontologies.org/core/iof_00000062
 :iof_00000062 rdf:type owl:Class ;
               owl:equivalentClass [ rdf:type owl:Restriction ;
                                     owl:onProperty obo:RO_0000087 ;
@@ -704,21 +713,21 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
               rdfs:label "Supplier"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000063
+###  https://www.industrialontologies.org/core/iof_00000063
 :iof_00000063 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000013 ;
               cco:definition "def. a planned process or unified action complex that is specified in a task specification."@en ;
               rdfs:label "Task"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000064
+###  https://www.industrialontologies.org/core/iof_00000064
 :iof_00000064 rdf:type owl:Class ;
               rdfs:subClassOf cco:Tool ;
               rdfs:comment "tbd" ;
               rdfs:label "Tool" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000065
+###  https://www.industrialontologies.org/core/iof_00000065
 :iof_00000065 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000023 ;
               obo:IAO_0000602 "supplier role(​x)​ ≡ ​∃​y​(agent(y​ )​ & has-role(​y​, ​x)​ & ​∀p​ ​((process(​p​) & realizes(​y,​ ​p)​ ) → act-of-selling(​p)​ )" ;
@@ -726,14 +735,14 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
               rdfs:label "Supplier Role" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000066
+###  https://www.industrialontologies.org/core/iof_00000066
 :iof_00000066 rdf:type owl:Class ;
               rdfs:subClassOf :iof_00000061 ;
               cco:definition "def. specification that is part of a process plan and specifies some action or ​unified action complex."@en ;
               rdfs:label "Task Specification"@en .
 
 
-###  https://www.industrialontologies.org/core#iof_00000067
+###  https://www.industrialontologies.org/core/iof_00000067
 :iof_00000067 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000015 ;
               obo:IAO_0000602 "transport process(​x​)→planned-process(​x)​ &​∃​y∃​ ​t∃​ ​t′​​∃​s∃​ ​s′​(material entity(​y​)& occupies(​x​, ​t)​ & occupies(​x,​ ​t​′) & occupies(​y,​ ​s​, ​t​) & occupies(​y,​ ​s​′, ​t′​ )) & earlier-than(​t​, ​t′​ )" ;
@@ -742,13 +751,13 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
               rdfs:label "Transport Process" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000068
+###  https://www.industrialontologies.org/core/iof_00000068
 :iof_00000068 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000023 ;
               rdfs:label "Seller Role" .
 
 
-###  https://www.industrialontologies.org/core#iof_00000069
+###  https://www.industrialontologies.org/core/iof_00000069
 :iof_00000069 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000023 ;
               rdfs:label "Purchaser Role" .
