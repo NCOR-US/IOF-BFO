@@ -13,5 +13,5 @@ OPTIONAL {?URI obo:IAO_0000602 ?FOLaxiom}
 OPTIONAL {?URI cco:definition ?definition}
 OPTIONAL {?URI rdfs:comment ?comment}
 OPTIONAL {?URI owl:equivalentClass ?equivalentClass}
-FILTER(regex(str(?x), "iof_"))
-} 
+FILTER(regex(str(?URI), "iof_"))
+}
