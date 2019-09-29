@@ -9,7 +9,7 @@ WHERE
 {?URI rdfs:subClassOf ?x.
 ?x rdfs:label ?parentclass.
 OPTIONAL {?URI rdfs:label ?label}
-OPTIONAL {?URI obo:IAO_0000602 ?axiom}
+OPTIONAL {?URI obo:IAO_0000602 ?FOLaxiom}
 OPTIONAL {?URI cco:definition ?definition}
 OPTIONAL {?URI rdfs:comment ?comment}
 OPTIONAL {?URI owl:equivalentClass ?equivalentClass}
