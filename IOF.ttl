@@ -33,6 +33,14 @@ obo:IAO_0000602 rdf:type owl:AnnotationProperty ;
                 rdfs:label "has associated axiom(fol)"@en .
 
 
+###  http://www.ontologyrepository.com/CommonCoreOntologies/acronym
+cco:acronym rdf:type owl:AnnotationProperty ;
+            cco:definition "An Alternative Label that consists of a shortened or abbreviated form of the rdfs:label and is used to denote the entity."^^xsd:string ;
+            cco:is_curated_in_ontology "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/ExtendedRelationOntology"^^xsd:string ;
+            rdfs:label "acronym"^^xsd:string ;
+            rdfs:subPropertyOf cco:alternative_label .
+
+
 ###  http://www.ontologyrepository.com/CommonCoreOntologies/alternative_label
 cco:alternative_label rdf:type owl:AnnotationProperty .
 
@@ -60,6 +68,13 @@ cco:elucidation rdf:type owl:AnnotationProperty ;
 
 ###  http://www.ontologyrepository.com/CommonCoreOntologies/is_curated_in_ontology
 cco:is_curated_in_ontology rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/term_creator
+cco:term_creator rdf:type owl:AnnotationProperty ;
+                 cco:definition "The name of the Term Editor who added the term to the ontology."^^xsd:string ;
+                 cco:is_curated_in_ontology "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/ExtendedRelationOntology"^^xsd:string ;
+                 rdfs:subPropertyOf cco:term_editor .
 
 
 ###  http://www.ontologyrepository.com/CommonCoreOntologies/term_editor
