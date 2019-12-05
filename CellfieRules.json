@@ -1,0 +1,1 @@
+{"Collections":[{"sheetName":"query-result-2","startColumn":"A","endColumn":"A","startRow":"2","endRow":"+","comment":"URI","rule":"Class: @A*(IRI)\t\nSubClassOf: D*\nFacts:\nrdfs:label @B*,\ncco:definition @C*,\nowl:EquivalentTo @F*,\nrdf:comment @H,\n\u003chttp://purl.obolibrary.org/obo/IAO_0000602\u003e @G*.","active":true}]}

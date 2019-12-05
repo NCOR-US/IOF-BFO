@@ -81,28 +81,52 @@ obo:RO_0000087 rdf:type owl:ObjectProperty .
 #    Classes
 #################################################################
 
+###  http://purl.obolibrary.org/obo/IAO_0000005
+obo:IAO_0000005 rdf:type owl:Class ;
+                rdfs:subClassOf :iof_00000061 ;
+                obo:IAO_0000111 "objective specification"@en ;
+                obo:IAO_0000112 "In the protocol of a ChIP assay the objective specification says to identify protein and DNA interaction."@en ;
+                obo:IAO_0000114 obo:IAO_0000122 ;
+                obo:IAO_0000115 "a directive information entity that describes an intended process endpoint. When part of a plan specification the concretization is realized in a planned process in which the bearer tries to effect the world so that the process endpoint is achieved."@en ;
+                obo:IAO_0000116 "2009-03-16: original definition when imported from OBI read: \"objective is an non realizable information entity which can serve as that  proper part of a plan towards which the realization of the plan is directed.\""@en ,
+                                "2014-03-31: In the example of usage (\"In the protocol of a ChIP assay the objective specification says to identify protein and DNA interaction\") there is a protocol which is the ChIP assay protocol. In addition to being concretized on paper, the protocol can be concretized as a realizable entity, such as a plan that inheres in a person. The objective specification is the part that says that some protein and DNA interactions are identified. This is a specification of a process endpoint: the boundary in the process before which they are not identified and after which they are. During the realization of the plan, the goal is to get to the point of having the interactions, and participants in the realization of the plan try to do that."@en ,
+                                "Answers the question, why did you do this experiment?"@en ;
+                obo:IAO_0000117 "PERSON: Alan Ruttenberg"@en ,
+                                "PERSON: Barry Smith"@en ,
+                                "PERSON: Bjoern Peters"@en ,
+                                "PERSON: Jennifer Fostel"@en ;
+                obo:IAO_0000118 "goal specification"@en ;
+                obo:IAO_0000119 "OBI Plan and Planned Process/Roles Branch"@en ,
+                                "OBI_0000217"@en ;
+                rdfs:label "objective specification"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000007
+obo:IAO_0000007 rdf:type owl:Class ;
+                rdfs:subClassOf :iof_00000061 ;
+                obo:IAO_0000112 "Pour the contents of flask 1 into flask 2"@en ;
+                obo:IAO_0000114 obo:IAO_0000122 ;
+                obo:IAO_0000115 "a directive information entity that describes an action the bearer will take"@en ;
+                obo:IAO_0000117 "Alan Ruttenberg"@en ;
+                obo:IAO_0000119 "OBI Plan and Planned Process branch"@en ;
+                rdfs:label "action specification"@en .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0000011
+obo:OBI_0000011 rdf:type owl:Class ;
+                rdfs:subClassOf :iof_00000013 ;
+                obo:IAO_0000111 "planned process"@en ;
+                obo:IAO_0000115 "A processual entity that realizes a plan which is the concretization of a plan specification."@en ;
+                obo:IAO_0000412 obo:obi.owl ;
+                rdfs:label "planned process"@en .
+
+
 ###  http://www.ontologyrepository.com/CommonCoreOntologies/ActOfArtifactEmployment
 cco:ActOfArtifactEmployment rdf:type owl:Class ;
                             rdfs:subClassOf :iof_00000013 ;
                             cco:definition "An Intentional Act of using an Artifact." ;
                             cco:is_curated_in_ontology "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/EventOntology" ;
                             rdfs:label "Act of Artifact Employment"@en .
-
-
-###  http://www.ontologyrepository.com/CommonCoreOntologies/Agent
-cco:Agent rdf:type owl:Class ;
-          rdfs:subClassOf obo:BFO_0000040 ;
-          cco:definition "A Material Entity that is capable of performing Intentional Acts." ;
-          cco:is_curated_in_ontology "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/AgentOntology" ;
-          rdfs:label "Agent" .
-
-
-###  http://www.ontologyrepository.com/CommonCoreOntologies/Artifact
-cco:Artifact rdf:type owl:Class ;
-             rdfs:subClassOf obo:BFO_0000030 ;
-             cco:definition "An Object that was designed by some Agent to realize a certain Function." ;
-             cco:is_curated_in_ontology "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/ArtifactOntology" ;
-             rdfs:label "Artifact" .
 
 
 ###  http://www.ontologyrepository.com/CommonCoreOntologies/ArtifactDesignContentEntity
@@ -170,18 +194,9 @@ cco:Organization rdf:type owl:Class ;
                  rdfs:label "Organization" .
 
 
-###  http://www.ontologyrepository.com/CommonCoreOntologies/PlanSpecification
-cco:PlanSpecification rdf:type owl:Class ;
-                      rdfs:subClassOf cco:DirectiveInformationContentEntity ;
-                      cco:definition "A Directive Information Content Entity that prescribes some set of intended Intentional Acts through which some Agent expects to achieve some Objective." ;
-                      cco:definition_source "http://en.wikipedia.org/wiki/Plan" ;
-                      cco:is_curated_in_ontology "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/AgentOntology" ;
-                      rdfs:label "Plan" .
-
-
 ###  http://www.ontologyrepository.com/CommonCoreOntologies/Tool
 cco:Tool rdf:type owl:Class ;
-         rdfs:subClassOf cco:Artifact ;
+         rdfs:subClassOf :iof_00000018 ;
          cco:definition "An Artifact that is designed to assist in the performance of manual or mechanical work and not to be consumed in that process." ;
          cco:definition_source "https://en.wikipedia.org/wiki/Tool" ;
          cco:is_curated_in_ontology "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/ArtifactOntology" ;
@@ -194,7 +209,7 @@ cco:Tool rdf:type owl:Class ;
                                     owl:onProperty obo:RO_0000087 ;
                                     owl:someValuesFrom :iof_00000052
                                   ] ;
-              rdfs:subClassOf cco:Artifact ;
+              rdfs:subClassOf :iof_00000018 ;
               obo:IAO_0000602 "product​(​x,t)​​​=def.​​instance-of(​x,​continuant,​t​)and∃​ ​r​product-role(​r​)​​&(h​ as-role(​x,​ ​r, t​)" ;
               cco:definition "def. continuant that has a product role. " ;
               rdfs:comment """Comment 1: This definition leaves open the possibility that generically dependent continuants may be products.
@@ -212,7 +227,7 @@ cco:Tool rdf:type owl:Class ;
 
 ###  https://www.industrialontologies.org/core/iof_00000002
 :iof_00000002 rdf:type owl:Class ;
-              rdfs:subClassOf :iof_00000013 ;
+              rdfs:subClassOf obo:OBI_0000011 ;
               cco:definition "def. planned process that is part of a product production process and is prescribed by an operation specification."@en ;
               rdfs:label "Operation"@en .
 
@@ -234,7 +249,7 @@ cco:Tool rdf:type owl:Class ;
 
 ###  https://www.industrialontologies.org/core/iof_00000006
 :iof_00000006 rdf:type owl:Class ;
-              rdfs:subClassOf :iof_00000041 ;
+              rdfs:subClassOf :iof_00000018 ;
               cco:definition "def. material artifact that has a mechanical system as part."@en ;
               rdfs:label "Machine"@en .
 
@@ -286,6 +301,7 @@ cco:Tool rdf:type owl:Class ;
 ###  https://www.industrialontologies.org/core/iof_00000013
 :iof_00000013 rdf:type owl:Class ;
               rdfs:subClassOf obo:BFO_0000015 ;
+              obo:IAO_0000115 "A processual entity that realizes a plan which is the concretization of a plan specification."@en ;
               obo:IAO_0000602 "instance-of(x, action, t) ≡ ∃y (instance-of(y, agent, t) & has-agent (x, y, t))" ;
               cco:definition "def. process that has-agent some agent." ;
               rdfs:label "Action" .
@@ -293,7 +309,7 @@ cco:Tool rdf:type owl:Class ;
 
 ###  https://www.industrialontologies.org/core/iof_00000014
 :iof_00000014 rdf:type owl:Class ;
-              rdfs:subClassOf cco:Agent ;
+              rdfs:subClassOf obo:BFO_0000040 ;
               obo:IAO_0000602 """
 
 Every agent bears some intention at some time.
@@ -328,19 +344,22 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
 
 ###  https://www.industrialontologies.org/core/iof_00000017
 :iof_00000017 rdf:type owl:Class ;
-              rdfs:subClassOf obo:BFO_0000015 ;
+              rdfs:subClassOf obo:OBI_0000011 ;
               rdfs:label "Assembly Process" .
 
 
 ###  https://www.industrialontologies.org/core/iof_00000018
 :iof_00000018 rdf:type owl:Class ;
-              rdfs:subClassOf obo:BFO_0000015 ;
-              rdfs:label "Basic Economic Transaction" .
+              rdfs:subClassOf obo:BFO_0000030 ;
+              obo:IAO_0000116 "Note: this class is equivalent to the CCO class. The only reason to keep it distinct for now is the label. In the future, these may be recombined.  http://www.ontologyrepository.com/CommonCoreOntologies/Artifact" ;
+              cco:definition "An Object that was designed by some Agent to realize a certain Function." ;
+              cco:is_curated_in_ontology "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/ArtifactOntology" ;
+              rdfs:label "Material Artifact"@en .
 
 
 ###  https://www.industrialontologies.org/core/iof_00000019
 :iof_00000019 rdf:type owl:Class ;
-              rdfs:subClassOf obo:BFO_0000015 ;
+              rdfs:subClassOf obo:OBI_0000011 ;
               obo:IAO_0000602 "business-process(​x)​ → planned-process(​x​) & ​∃​y​∃​f​ (organization(​y​) & has-function(​y,​ ​f​) & realizes(​x,​ ​f​))" ;
               cco:definition "def. planned process that realizes a business function of an organization." ;
               rdfs:comment "business functions are functions realized in the financial processes of an enterprise or non-profit organization." ;
@@ -368,7 +387,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
                                     owl:onProperty obo:RO_0000087 ;
                                     owl:someValuesFrom :iof_00000023
                                   ] ;
-              rdfs:subClassOf :iof_00000041 ;
+              rdfs:subClassOf :iof_00000018 ;
               obo:IAO_0000602 "instance-of(​x​.component,​t​)≡instance-of(​x​,material-artifact,​t)​ &​∃​y(instance-of(​y​, component-role, ​t​) & has-role(​x​, ​y​))" ;
               cco:definition "def. material artifact that bears a component role."@en ;
               rdfs:comment "Comment: All components exist initially as self-standing products, since they have to be manufactured."@en ;
@@ -447,27 +466,27 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
 
 ###  https://www.industrialontologies.org/core/iof_00000031
 :iof_00000031 rdf:type owl:Class ;
-              rdfs:subClassOf obo:BFO_0000015 ;
+              rdfs:subClassOf obo:OBI_0000011 ;
               rdfs:label "Maintenance Process" .
 
 
 ###  https://www.industrialontologies.org/core/iof_00000032
 :iof_00000032 rdf:type owl:Class ;
-              rdfs:subClassOf :iof_00000041 ;
+              rdfs:subClassOf :iof_00000018 ;
               cco:definition "tbd" ;
               rdfs:label "Manufactured Product"@en .
 
 
 ###  https://www.industrialontologies.org/core/iof_00000034
 :iof_00000034 rdf:type owl:Class ;
-              rdfs:subClassOf obo:BFO_0000015 ;
+              rdfs:subClassOf obo:OBI_0000011 ;
               cco:definition "def. planned process that has agent some manufacturing enterprise, where the agent realizes the planned processes of the enterprise." ;
               rdfs:label "Manufacturing Enterprise Process" .
 
 
 ###  https://www.industrialontologies.org/core/iof_00000035
 :iof_00000035 rdf:type owl:Class ;
-              rdfs:subClassOf :iof_00000041 ;
+              rdfs:subClassOf :iof_00000018 ;
               obo:IAO_0000602 "instance-of(​x​,manufacturing-machine,​t)​ ≡instance-of(​x​,machine,​t)​ & ∃y​ (has-function(​x​, ​y)​ & ​∀z​ (realizes(​f,​ ​z​) → manufacturing-process(​z​)))" ;
               cco:definition "def. machine whose function is realized in a manufacturing process."@en ;
               rdfs:label "Manufacturing Machine"@en .
@@ -475,7 +494,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
 
 ###  https://www.industrialontologies.org/core/iof_00000036
 :iof_00000036 rdf:type owl:Class ;
-              rdfs:subClassOf obo:BFO_0000015 ;
+              rdfs:subClassOf obo:OBI_0000011 ;
               obo:IAO_0000602 "manufacturing-process(​x)​ → ​∃​y​(product-production-process(​y​) & occurrent-part(​x,​ ​y)​ )" ;
               cco:definition "def. planned process that is an occurrent part of a product production process in which one or more material entities that will be part of a manufactured product are modified." ;
               rdfs:label "Manufacturing Process" .
@@ -510,17 +529,10 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
 
 ###  https://www.industrialontologies.org/core/iof_00000040
 :iof_00000040 rdf:type owl:Class ;
-              rdfs:subClassOf cco:Artifact ;
+              rdfs:subClassOf :iof_00000018 ;
               obo:IAO_0000602 "Manufacturing tool(​x)​ ≡material-entity(​x​)&​∃​f​(function(​f)​ &has-function(​x​,​f)​ & ∀y​ (realizes(​y​, ​f)​ → manufacturing process (​y​)))" ;
               cco:definition "def. a material entity that bears some function whch if realized, is realized in a manufacturing process." ;
               rdfs:label "Manufacturing Tool" .
-
-
-###  https://www.industrialontologies.org/core/iof_00000041
-:iof_00000041 rdf:type owl:Class ;
-              rdfs:subClassOf cco:Artifact ;
-              cco:definition "def. object that was designed by some agent to realize some function." ;
-              rdfs:label "Material Artifact" .
 
 
 ###  https://www.industrialontologies.org/core/iof_00000042
@@ -543,14 +555,14 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
 
 ###  https://www.industrialontologies.org/core/iof_00000044
 :iof_00000044 rdf:type owl:Class ;
-              rdfs:subClassOf :iof_00000061 ;
+              rdfs:subClassOf obo:IAO_0000005 ;
               cco:definition "def. plan specification that specifies an operation, the manufacturing resources required to perform the operation, and has parts, some partially-ordered sequence of step specifications."@en ;
-              rdfs:label "Operation Specification"@en .
+              rdfs:label "objective specification"@en .
 
 
 ###  https://www.industrialontologies.org/core/iof_00000045
 :iof_00000045 rdf:type owl:Class ;
-              rdfs:subClassOf :iof_00000041 ;
+              rdfs:subClassOf :iof_00000018 ;
               cco:definition "def. primitive term that refers to a material artifact that is used to realize some action (primitive term)."@en ;
               rdfs:comment "​‘Equipment’ is a synonym of ‘​piece of equipment​’."@en ;
               rdfs:label "Piece of Equipment"@en .
@@ -566,7 +578,7 @@ uses-in (x, y, z) → agent(x) & entity(y) & process(z) & participates-in(y, x)"
 
 ###  https://www.industrialontologies.org/core/iof_00000047
 :iof_00000047 rdf:type owl:Class ;
-              rdfs:subClassOf obo:BFO_0000015 ;
+              rdfs:subClassOf obo:OBI_0000011 ;
               obo:IAO_0000602 "product-production-process(​x​) ≡ ​∃​y(continuant(​y​) & has-output(​x,​ ​y)​ & ∃t​ ​∃​t​′(exists-at(​y,​ ​t​) & precedes(​t′​ , ​t)​ & ​¬​exists at(y​ ​, ​t′​ )" ;
               cco:definition "def. planned process that has specified output some product, where the product did not exist prior to the planned process. " ;
               rdfs:comment "a production process is distinct from a maintenance process in that, in the latter case, the product exists both before and after the process occurs." ;
@@ -588,7 +600,7 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
 
 ###  https://www.industrialontologies.org/core/iof_00000049
 :iof_00000049 rdf:type owl:Class ;
-              rdfs:subClassOf cco:PlanSpecification ;
+              rdfs:subClassOf cco:DirectiveInformationContentEntity ;
               cco:definition "def. a specification with action specifications and objective specifications as parts." ;
               rdfs:comment "When concretized, may be realized in a process performed by some agent to achieve the prescribed process endpoints by taking the prescribed actions." ;
               rdfs:label "Plan" .
@@ -687,7 +699,7 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
 
 ###  https://www.industrialontologies.org/core/iof_00000060
 :iof_00000060 rdf:type owl:Class ;
-              rdfs:subClassOf obo:BFO_0000015 ;
+              rdfs:subClassOf obo:OBI_0000011 ;
               cco:definition "tbd" ;
               rdfs:label "Step" .
 
@@ -744,7 +756,7 @@ instance-of(​x​, plan, ​t​) → ​∃​y,​ ​t​′(instance-of(y�
 
 ###  https://www.industrialontologies.org/core/iof_00000067
 :iof_00000067 rdf:type owl:Class ;
-              rdfs:subClassOf obo:BFO_0000015 ;
+              rdfs:subClassOf obo:OBI_0000011 ;
               obo:IAO_0000602 "transport process(​x​)→planned-process(​x)​ &​∃​y∃​ ​t∃​ ​t′​​∃​s∃​ ​s′​(material entity(​y​)& occupies(​x​, ​t)​ & occupies(​x,​ ​t​′) & occupies(​y,​ ​s​, ​t​) & occupies(​y,​ ​s​′, ​t′​ )) & earlier-than(​t​, ​t′​ )" ;
               cco:definition "def. planned process in which a material entity is moved from one site to another.	" ;
               rdfs:comment "Transport process includes both internal (e.g., inside a factory) and external (e.g., between factories) moving of an object" ;
@@ -773,22 +785,6 @@ owl:Nothing rdfs:label "tbd" .
 #################################################################
 #    General axioms
 #################################################################
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :iof_00000002
-                :iof_00000011
-                :iof_00000012
-                :iof_00000017
-                :iof_00000018
-                :iof_00000019
-                :iof_00000031
-                :iof_00000034
-                :iof_00000036
-                :iof_00000047
-                :iof_00000067
-              )
-] .
-
 
 [ rdf:type owl:AllDisjointClasses ;
   owl:members ( :iof_00000005
