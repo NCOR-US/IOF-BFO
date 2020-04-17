@@ -1,0 +1,35 @@
+#This query returns a list of all classes in the suite and their annotations. It may be used to confirm the required elements are uniformly applied, as well as to extract the contents of the ontology and place them in a spreadsheet for review outside an ontology editor.
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX cco: <http://www.ontologyrepository.com/CommonCoreOntologies/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+SELECT ?IRI ?label ?parentclass ?definition ?definitionsemi ?definitionFOL 
+?equivalentClass ?comment ?source ?elucidation ?example
+WHERE
+{
+?URI rdfs:subClassOf ?x.
+BIND(replace(str(?URI), "/core#.*$", "/core#") as ?temp).
+BIND(replace(str(?temp), "gies/.*$", "gies/") as ?IRI).
+?x rdfs:label ?parent.
+BIND (STR(?parent)  AS ?parentclass)
+OPTIONAL {?URI rdfs:label ?lab}
+BIND (STR(?lab)  AS ?label)
+OPTIONAL {?URI obo:IAO_0000602 ?FOLaxiom}
+OPTIONAL {?URI iof:definition-NL ?def}
+OPTIONAL {?URI cco:definition ?defcco}
+BIND(IF(BOUND(?def), ?def, ?defcco) as ?definition)  
+OPTIONAL {?URI iof:definition-SemiFOL ?defsemi}
+BIND (STR(?defsemi)  AS ?definitionsemi)
+OPTIONAL {?URI iof:definition-FOL ?def2}
+BIND (STR(?def2)  AS ?definitionFOL)
+OPTIONAL {?URI rdfs:comment ?com}
+BIND (STR(?com)  AS ?comment)
+OPTIONAL {?URI owl:equivalentClass ?equivalentClass}
+OPTIONAL {?URI iof:source ?z}
+OPTIONAL {?URI cco:is_curated_in_ontology ?y}
+BIND(IF(BOUND(?z), ?z, ?y) as ?source)  
+OPTIONAL {?URI cco:elucidation ?elucidation}
+OPTIONAL {?URI cco:example_of_usage ?example}
+FILTER(regex(str(?URI), "industrial|common", "i"))
+}
+ORDER BY ?IRI (?label)

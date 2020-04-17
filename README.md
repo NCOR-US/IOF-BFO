@@ -5,6 +5,5 @@ WARNING: The contents of this repository are under active development and may ch
 
 This repository contains:
 1. An owl implementation of the IOF's top terms ontology, serialized in Turtle
-2. A folder of two BFO artifacts that are imported by this ontology.
-3. A folder containing images of the class hierarchy.
-4. A SPARQL querying for extracting the classes and their annotations. 
+2. A folder of one BFO artifact that are imported by this ontology.
+3. A SPARQL querying for extracting the classes and their annotations. 
