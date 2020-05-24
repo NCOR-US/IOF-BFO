@@ -656,38 +656,51 @@ iof:Component rdf:type owl:Class ;
                                     owl:someValuesFrom iof:ComponentRole
                                   ] ;
               rdfs:subClassOf bfoo:BFO_0000040 ;
-              iof:definition-FOL "instance-of(​x​.component,​t​)≡instance-of(​x​,material-entity,​t)​ &​∃​y(instance-of(​y​, component-role, ​t​) & has-role(​x​, ​y​))" ;
-              iof:definition-NL "def. material entity that has the component role." ;
-              iof:unresolved_issues "1. Components in manufacturing and products do not necessarily have to be self-standing products. Some components are never sold. I think we can strike this. Also, see expanded discussion and new definition under term component role." ;
-              rdfs:comment "All components exist initially as self-standing products, since they have to be manufactured." ;
-              rdfs:label "Component"@en .
+              iof:definition-FOL "Component(x) ≡ MaterialEntity(x) ∧∃r (ComponentRole(r) ∧ hasRole(x, r))" ;
+              iof:definition-NL "A portion of material, part, assembly, sub-system or thing, that becomes part of some higher-level processed material or compound, part, assembly or system, as prescribed by some product or packaging bill of material." ;
+              iof:definition-SemiFOL "Component =def. Material Entity when it has a Component Role." ;
+              iof:definition_other_common """1. A raw material, part, or subassembly that goes into a higher level assembly, compound, or the final product. This term may also include packaging materials for finished items [APICS].
+
+2. An individual piece used in the assembly of a single unit of equipment [ISO 13533:2001]""" ;
+              iof:unresolved_issues """Changes made to the 2019 definition (and reflected above):
+ 
+1. Components in manufacturing are not necessarily self-standing products. Some components are never sold. I struck this comment.
+
+2. Asserted this under material entity vs material artifact. There are components of in discrete products and as part of \"recipes\" in batch processes (as in batch chemical, cosmetics, plastics, etc.) in which the \"component ingredients\" are in fact not man-made. Basic example is \"water\" which is mixed in with other raw material components, to produce the product or some intermediate-level processed material. Similar examples are found in the continuous process industries. Of course the argument can be made that all raw materials, as they arrive at the factory, are processed materials. To be discussed further and then decided. Then of course we have Hyunmin's counter example: The sea shells my daughter collects on the beach to be packaged in her garage and listed/sold to customers on the Amazon online marketplace as product;-)
+
+Other proposed changes:
+
+1. Component is a synonym for part and enters the realm of parthood and philosophical discussions. To avoid this, we should rename it, perhaps to Product Component.""" ;
+              rdfs:label "Component"@en ;
+              skos:altLabel "part, item" .
 
 
 ###  http://www.industrialontologies.org/core#ComponentRole
 iof:ComponentRole rdf:type owl:Class ;
                   rdfs:subClassOf bfoo:BFO_0000023 ;
-                  iof:definition-NL "Component role is a role a thing bears when it is intended to be part of some material artifact as prescribed by some bill of material." ;
-                  iof:definition-SemiFOL "" ;
-                  iof:definition_other_common """1. A raw material, part, or subassembly that goes into a higher level assembly, compound, or the final product. This term may also include packaging materials for finished items [APICS].
-
-2. An individual piece used in the assembly of a single unit of equipment [ISO 13533:2001]""" ;
+                  iof:definition-FOL "ComponentRole(x) ≡ Role(x) ∧ MaterialEntity(x)" ;
+                  iof:definition-NL "A role a thing bears when it is intended to be part of some material artifact as prescribed by some product or packaging bill of material." ;
+                  iof:definition-SemiFOL "Component Role =def. Role a Material Entity has when some Agent intends it to be part of some next higher-level material entity as prescribed by some BOM specification." ;
                   iof:example_counter "Software component <CW> with our workaround of allowing software to be carried an information bearing artifact, this counter example can be moved to a valid example." ;
-                  iof:unresolved_issues """1. Propose revised definition above to reflect more the standard meaning in manufacturing. Former defintion was \"role inhering in a material artifact that is designed to be a proper continuant part of some material artifact.\" Arguments include:
+                  iof:unresolved_issues """The above revised definition aligns more with the standard meaning in manufacturing for term component. For reference, the former defintion was \"role inhering in a material artifact that is designed to be a proper continuant part of some material artifact.\" 
+
+Arguments for the changes include:
  
-(a) replaced material artifact with \"material entity that is not an agent,\" since portions of material substances and subsystems can be components too. Moved defined class Component under material entity as well.
+(a) replaced material artifact with \"material entity since portions of materials and discrete \"things\" found in nature can be components too. 
 
-(b) All components appear in some bill of material (maintenance BOM, product BOM, engineering BOM, planning BOM, manufacturing BOM, packaging BOM) at some level below the root. If we accept this new definition, we will have to introduce term BOM.
+(b) Also replaced material artifact with material entity on the output side, or the \"thing\" that the component becomes a part of, since a component may become part of a \"system,\" and systems are not currently material artifacts as we envision, rather they are object aggregates. We may ultimately want to move systems under object, but that has its own issues. To be debated and figured out! 
 
-(c) We could leave Neil's notion in the ontology as a super-class of the above, and and rename the new term/subclass to \"manufacturing component role.\"
+(c) In industrial contexts, all components appear in some bill of material, be that some maintenance BOM, product BOM, engineering BOM, planning BOM, manufacturing BOM, or packaging BOM. The \"position\" the component appears at will surely be some level below the root level. We need to introduce BOM soon anyway, and once we do, we can refine the formalization here a bit.
 
-4. A component can be a raw material -- as in appear at the lowest level of some BOM. (Don't forget to update definition of raw material to reflect this once adding in BOM.)
+(d) NOTE: We could leave Neil's 2019 proposed notion in the ontology as a super-class of the above, and perhaps rename this term/notion to \"product component role.\"
 
-5. Do we need to restrict the scope of material entity to exclude agent and various types of object aggregates? 
+Other issues pending:
 
-6. In batch and continuous process industries, portions of materials are mixed together to create compound materials, or react to create portions of some new material, that are sold as manufactured product or be semi-processed materials consumed in downstream processes. These are all considered component materials or portions of some component material. We may need to further relax the above definition to say that the thing the component becomes a part of, is a material entity. But this starts to conflict with parthood rules. TBD""" ;
+1. A component can be a raw material -- as in appear at the lowest level of some BOM. Once we define the architecture of BOMs, we need not forget to update our definition for raw material to reflect that it must exist at the \"leaf level\" of some BOM for some business entity.
+
+2. Do we need to restrict the scope of component so it excludes agents and various types of object aggregates, like organizations? This is an ontological question.""" ;
                   cco:example_of_usage "screw, crank shaft, transistor, cardboard separator (that goes into a box as part of packaging), engine." ;
-                  rdfs:label "Component Role"@en ;
-                  skos:altLabel "part, item" .
+                  rdfs:label "Component Role"@en .
 
 
 ###  http://www.industrialontologies.org/core#Customer
@@ -1218,16 +1231,18 @@ Part of this will be dependent on what definition we settle on for term plan spe
 
 ###  http://www.industrialontologies.org/core#PortionOfInputMaterial
 iof:PortionOfInputMaterial rdf:type owl:Class ;
-                           rdfs:subClassOf bfoo:BFO_0000030 ;
+                           rdfs:subClassOf bfoo:BFO_0000040 ;
                            iof:definition-SemiFOL "Portion of Input Material =def. Object when it bears some Input Material Role" ;
                            iof:example_counter "People, machines, tools, & pieces of equipment." ;
-                           iof:unresolved_issues """1. We've previously added the counter examples above but I don't believe they are valid since none of them are inputs to a manufacturing process. Rather, they participate in manufacturing processes via the usedIn or are AgentIn relations.
+                           iof:unresolved_issues """1. We've previously added the counter examples above but I don't believe they are valid since none of them are inputs to a manufacturing process. Rather, they participate in manufacturing processes via the Used-in or are Agent-in relations.
 
-2. Aren't the inputs to a manufacturing process specified in some directive ICE, as in e.g., a process specification, the work instructions, a BOM (picklist), etc.? To be discussed.
+2. Aren't the inputs to a manufacturing process specified in some directive ICE? As in e.g. a process specification, the work instructions, a BOM (picklist), etc.? To be discussed.
 
-3. Why is portion of input material not asserted under Object Aggregate? I believe the answer is lack of causal unity (see BFO 2.0 reference document).
+3. If we are to introduce a class like this, why not then introduce simply \"Input Material (defined class) =def. Material Entity and bears Input Material Role?\" This will be come useful in definiing Manufacturing Process (see its definition).
 
-4. If we are to introduce a class like this, why not then introduce simply \"Input Material (defined class) =def. Material Entity and bears Input Material Role?\" This will be come useful in definiing Manufacturing Process (see its definition).""" ;
+4. Why is this asserted under material entity? More generally, this issue concerns portions of solids, liquids and gases – perhaps man-made but also as found in nature. As we proceed in adding additional terms to the core IOF ontology to handle various types of portions of solids, liquids and gases – all portions of matter – we will create many sibling classes to object aggregate, object, and fiat object part. That clouds the purpose of these BFO classes. We should only introduce sibling classes here for good reasons. Alternative approaches? Option (a) would be to assert a grouping class under material entity, say “a portion of material,” and put the various portions of xyz beneath it. But in fact, a portion of material and material entity are synonymous. So this would not solve our problem. Alternatively, option (b) would be to put all portions of xyz under object, after all, a rock, a portion of water, and even a portion of gas andd portion of sub-atomic particles, all fit nicely under object and we can come up with arguments on how they satisfy the rules in effect for object, such as satisfying its causal unity criterion (see Barry's arguments for \"rock\" in the BFO 2.0 reference document).
+
+Note that in CCO, they have \"portion of material\" asserted under \"portion of processed material,\" which is asserted under \"material artifact.\" But certainly portions of input materials to a manufacturing process may ones found in nature (as in water to enable a chemical reaction). So we can't place portion of input material and raw materials under material artifact. Of course, the CCO guys can always argue that the water available on the shop floor for use in a batch chemical process, is in fact processed, as it has traveled from the pond, through a water department's processing plants and piping, to be delivered to the factory. The devil is in the details of how we formalize these terms, and what actually survives the dilution that happens as we express it in OWL;-)""" ;
                            cco:example_of_usage "Raw material (plastic pellets, sheet metal); sub-assemblies (engine module, IC circuits); components (screws, crank shafts, transistors)" ;
                            rdfs:label "Portion of Input Material"@en .
 
@@ -1354,10 +1369,10 @@ iof:ProductProductionProcess rdf:type owl:Class ;
 ###  http://www.industrialontologies.org/core#ProductRole
 iof:ProductRole rdf:type owl:Class ;
                 rdfs:subClassOf bfoo:BFO_0000023 ;
-                iof:definition-NL "A role a continuant has because some agent intends to sell it." ,
-                                  """Open action items:
-1. Do we want to keep \"intends to sell\" in the definition and as proposed above in the comments? If we keep \"intends to sell\" in the definition, we need to introduce a relation for this.
-3. Concerning the \"end of life\" of a product, when a continuant is no longer to carry the product role, do we extend the definition to include this eventuality?""" ;
+                iof:definition-NL "A role a continuant has because some agent intends to sell it." ;
+                iof:unresolved_issues """1. Do we want to keep \"intends to sell\" in the definition and as proposed above in the comments? If we keep \"intends to sell\" in the definition, we need to introduce a relation for this.
+
+2. Concerning the \"end of life\" of a product, when a continuant is no longer to carry the product role, do we extend the definition to include this eventuality?""" ;
                 rdfs:comment """1. The BFO term ‘role’ is used extensively in this formalization to do justice to those cases where general terms are ​phase sortals,​ which means they hold only for certain phases in the existence of the relevant entities. Thus, for example, a given material entity may be correctly describable as a ​prototype at one phase in its existence and as a ​product​ in a later phase.
 
 Although the above holds true for the general use of roles, we choose here to insert \"intends to sell\" into the definition, allowing us to have an umbrella term that covers all phases a product's life cycle, including those before it physically exists or is available to be sold. This would suggest we might introduce subclasses such as \"product-in-design role,\" \"prototype product role,\" etc., as the ontology evolves.
