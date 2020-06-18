@@ -154,6 +154,14 @@
     
 
 
+    <!-- http://purl.obolibrary.org/obo/BFO_0000196 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000196">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.industrialontologies.org/core#RO_0000079 -->
 
     <owl:ObjectProperty rdf:about="http://www.industrialontologies.org/core#RO_0000079">
@@ -457,7 +465,6 @@ x has_agent y → agent(y) &amp; process(x) &amp; participates_in(x, y) &amp; �
     <owl:ObjectProperty rdf:about="http://www.industrialontologies.org/core#is_available_to">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
         <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/BFO_0000004"/>
-        <rdfs:range rdf:resource="http://www.industrialontologies.org/core#Agent"/>
         <definition-NL>NL: independent continuant ‘x’ is available to agent ‘y’ means ‘y’ has some intention ‘i’ realized by some planned process ‘p’ whereby either ‘x’ has some disposition ‘p’ realizes or, more generally, ‘x’ merely participates in ‘p’. 
 
 FOL:  isAvailableTo (x, y) → IndependentContinuant(x) ∧ Agent(y) ∧ ∃p, ∃i (PlannedProcess(p) ∧ intentionOf(i, y) ∧ realizes(p, i) ∧ (∃d (Disposition(d) ∧ bears(x, d) ∧ realizes(p, d)) ∨ participates-in(x, p)))</definition-NL>
@@ -634,30 +641,17 @@ triggers(p, q) 🡪 ∃t ∃t&apos; ∃t&quot; (occupies-temporal-region(p, t) &
     
 
 
-    <!-- http://purl.obolibrary.org/obo/IAO_0000005 -->
+    <!-- http://purl.obolibrary.org/obo/BFO_0000040 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000005">
-        <rdfs:subClassOf rdf:resource="http://www.ontologyrepository.com/CommonCoreOntologies/DirectiveInformationContentEntity"/>
-        <source xml:lang="en">OBI Plan and Planned Process/Roles Branch</source>
-        <source xml:lang="en">OBI_0000217</source>
-        <unresolved_issues xml:lang="en">2019-12-31 (Chris Will): Need to have a discussion on this. At a minimum, it needs to be cleaned up.</unresolved_issues>
-        <cco:definition xml:lang="en">a directive information entity that describes an intended process endpoint. When part of a plan specification the concretization is realized in a planned process in which the bearer tries to effect the world so that the process endpoint is achieved.</cco:definition>
-        <cco:example_of_usage xml:lang="en">In the protocol of a ChIP assay the objective specification says to identify protein and DNA interaction.</cco:example_of_usage>
-        <rdfs:label xml:lang="en">Objective specification</rdfs:label>
-    </owl:Class>
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000040">
+        <owl:disjointWith rdf:resource="http://purl.obolibrary.org/obo/BFO_0000141"/>
+    </rdf:Description>
     
 
 
-    <!-- http://purl.obolibrary.org/obo/IAO_0000007 -->
+    <!-- http://purl.obolibrary.org/obo/BFO_0000141 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000007">
-        <rdfs:subClassOf rdf:resource="http://www.ontologyrepository.com/CommonCoreOntologies/DirectiveInformationContentEntity"/>
-        <definition-SemiFOL>step specification =def. action specification that prescribes some step to be performed by a person, and is part of a manufacturing operation specification.</definition-SemiFOL>
-        <source xml:lang="en">OBI Plan and Planned Process branch</source>
-        <cco:definition xml:lang="en">a directive information entity that describes an action the bearer will take</cco:definition>
-        <cco:example_of_usage xml:lang="en">Pour the contents of flask 1 into flask 2</cco:example_of_usage>
-        <rdfs:label xml:lang="en">Action specification</rdfs:label>
-    </owl:Class>
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000141"/>
     
 
 
@@ -687,15 +681,32 @@ instance-of(x, action, t) → ∃y, t′(instance-of(y, intention, t′) &amp; r
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
-        <definition-FOL>agent(x) ≡ person(x) ˅ organization(x)
+        <definition-FOL>agent(x) ≡ person(x) ˅ organization(x)</definition-FOL>
+        <definition-SemiFOL>Agent =def. Person or Organization (defined class)</definition-SemiFOL>
+        <definition_other_common>From the dictionary:
+1. A person who acts on behalf of another person or group.
 
-Has additional axiom: every agent bears some intention at some time
-instance-of(x, agent, t)) → ∃y, ∃t′(instance-of(y, intention, t′) &amp; bears(x, y))</definition-FOL>
-        <definition-SemiFOL>agent =def. person or organization (defined class)</definition-SemiFOL>
-        <rdfs:comment>1. This implies that ‘agent’ is not a role term in the BFO sense. It implies also that it is not a phase sortal.
+2. A person or thing that takes an active role or produces a specified effect.
 
-2. When an organization is an agent, this is because one or more of the persons who are members of the organization realize its intentions.</rdfs:comment>
-        <rdfs:label xml:lang="en">Agent</rdfs:label>
+3. OBI: A role borne by an entity and that is realized in a process that is part of an investigation in which an objective is achieved. These processes include, among others: planning, overseeing, funding, reviewing.</definition_other_common>
+        <example_complement>Other types of agents we are not including at this stage: 
+1. Of physical and chemical in nature: Cleaning, vulcanizing, fluxing, indicator, sterilizing, emulisifying, refining.
+
+2. Organisms: animals, cells, parts of organisms (organs, organelles, viruses). 
+
+3. In computing: intelligent, artificial, mobile, &amp; autonomous</example_complement>
+        <unresolved_issues>1. We may want to add the condition that to be an Agent, either (a) there must exist at some time an intention the Agent bears, or (b) there must exist some action in which the Agent played a causal role (which would imply the existance of some intention).
+
+2. What about chemical agents that play a causitive role in planned processes? Certainly these don&apos;t have intentions but they do play a causative role in the processes they participate in (e.g., platinum is an agent in the reduction reactions that help eliminate various pollutants in car exhausts).
+
+3. We may want to expand the definition to include other types of non-human agents, like smart systems (robots, smart cars, etc.), which more-or-less, either have &quot;programmed intentions&quot; or &quot;learned intentions&quot; -- so not far off from what humans can do, in particular contexts. See other types under counter examples.</unresolved_issues>
+        <rdfs:comment>1. Every agent bears some intention at some time.
+
+2. Agent is not a role term in the BFO sense. This implies also that it is not a phase sortal.
+
+3. When an organization is an agent, this is because one or more of the persons who are members of the organization realize its intentions.</rdfs:comment>
+        <rdfs:label>Agent</rdfs:label>
+        <skos:example>Donald Trump; the White House</skos:example>
     </owl:Class>
     
 
@@ -704,7 +715,7 @@ instance-of(x, agent, t)) → ∃y, ∃t′(instance-of(y, intention, t′) &amp
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#Assembly">
         <rdfs:subClassOf rdf:resource="http://www.industrialontologies.org/core#MaterialArtifact"/>
-        <definition-NL>assembly =def. material artifact that contains one or more components capable of disassembly without damaging or destroying the assembly or its components.</definition-NL>
+        <definition-SemiFOL>Assembly =def. Material Artifact which has Components as parts that can be disassembled without damaging or destroying the Assembly or its Components.</definition-SemiFOL>
         <definition_other_common>1. A group of subassemblies and/or parts that are put together and that constitute a major subdivision for the final product. An assembly may be an end item or a component of a higher level assembly [APICS].
 
 2. A combination of parts, components [or] units that form a functional entity [ISO 10795].
@@ -713,9 +724,12 @@ instance-of(x, agent, t)) → ∃y, ∃t′(instance-of(y, intention, t′) &amp
 
 4. A component or end item comprising of a number of parts or subassemblies put together to perform a specific function, and capable of disassembly without destruction [businessdictionary.com].</definition_other_common>
         <example_counter>A car, a machine, a respirator. Although these can be disassembled, they are not components since they are not consumed by or go into any parent assembly or system, and hence are not assemblies.</example_counter>
-        <unresolved_issues>1. This updated definition tries to address many of the issues raised last year (see master working document of IOF terms). Major changes: moved term under material artifact. Dropped class/subclass subassembly and completed assembly. Aligned definition to model it after the one found in businessdictionary.com (see above).
+        <unresolved_issues>This updated definition tries to address many of the issues raised last year (see master working document of IOF terms). Major changes: moved term under material artifact. Dropped class/subclass subassembly and completed assembly. Aligned definition to model it after the one found in businessdictionary.com (see above).
 
-2. As a general unresolved issue (for this and many other terms), need to figure out how to represent various modal forms of these entities in the core ontology (i.e., unfinished assembly, disassembled assembly. Also, we need a way to represent work-in-progress or WIP material entities and artifacts. Some of these are not yet components (as they don&apos;t show up on some bill of material), while others are (phantom component). 
+Unresolved issue (for this and many other terms):
+1. Need to figure out how to represent various modal forms of these entities in the core ontology (i.e., unfinished assembly, disassembled assembly. 
+
+2. Need a way to represent work-in-progress or WIP material entities and artifacts. Some of these are not yet components (as they don&apos;t show up on some bill of material), while others are (phantom components). 
 
 3. Related terms to be created:
 
@@ -750,7 +764,7 @@ Obviously need to formalize what it means to not damage a material artifact/enti
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#AssemblyProcess">
         <rdfs:subClassOf rdf:resource="http://www.industrialontologies.org/core#PlannedProcess"/>
-        <definition-NL>assembly process =def. planned process wherein one or more components are added together to produce an assembly.</definition-NL>
+        <definition-SemiFOL>Assembly Process =def. Planned Process wherein some Component is added to an Assembly and has output, some Assembly.</definition-SemiFOL>
         <definition_other_common>When a group of subassemblies and/or parts are put together such that they constitute a major subdivision of some final product. An assembly may be an end item or a component of some higher-level assembly [APICS].</definition_other_common>
         <example_complement>Polishing a collection of parts (output is still a collection) &lt;CW&gt; I believe this example can now be dropped since assembly is no longer asserted object aggreegate.</example_complement>
         <example_counter>3D printing on an existing part (existing part + a pool of printing material -&gt; new part) -- Note that the pool of material is an object before the process but becomes liquid (there is transformation) during the &quot;assembly&quot; process &lt;CW&gt; I believe this can be dropped (see examples/discussion under Assembly).</example_counter>
@@ -769,8 +783,8 @@ Obviously need to formalize what it means to not damage a material artifact/enti
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#BusinessEntity">
         <rdfs:subClassOf rdf:resource="http://www.ontologyrepository.com/CommonCoreOntologies/Organization"/>
-        <definition-NL>An organization sharing a set of objectives to offer products, services or both, and formed according to the laws of some local government body, province/state, or nation state.</definition-NL>
-        <definition-NL>Business Entity =def. an Organization that intends to sell/sells some Product or Service and which is formed and engages in Processes as prescribed by law for the spacial regions in which its Processes are realized.</definition-NL>
+        <definition-NL>An organization that intends to produce and sell products or services, or both, and is formed according to the laws of some local government, province, state, or nation state in which it has business operations.</definition-NL>
+        <definition-SemiFOL>Business Entity =def. an Organization that is formed according to the laws of some local government, province, state or nation state, in which the organization intends to sell or sells some Product or Service, or both, and where the organization is an agent in some Product Production Process, or some Service Provisioning Process that outputs the Product or Service.</definition-SemiFOL>
         <definition_other_common>1. Group of organizations sharing a set of goals and objectives to offer products, services or both [ISO 20534].
 2. Any undertaking, venture, initiative, or business organization with a defined mission [APICS].</definition_other_common>
         <unresolved_issues>1. Added as new term to better define the type of organizations that perform business processes, and to serve as a generic parent of manufacturing enterprises, which are businesses that engage in, or intend to engage in, certain types of business processes, namely at least some manufacturing process, that produces some manufactured product they sell/intend to sell.
@@ -850,17 +864,33 @@ if capability → exists agent with requirment that it satisfies</definition-NL>
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#Component">
         <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.industrialontologies.org/core#RO_0000087"/>
-                <owl:someValuesFrom rdf:resource="http://www.industrialontologies.org/core#ComponentRole"/>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000040"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.industrialontologies.org/core#RO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="http://www.industrialontologies.org/core#ComponentRole"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
-        <definition-FOL>instance-of(​x​.component,​t​)≡instance-of(​x​,material-entity,​t)​ &amp;​∃​y(instance-of(​y​, component-role, ​t​) &amp; has-role(​x​, ​y​))</definition-FOL>
-        <definition-NL>def. material entity that has the component role.</definition-NL>
-        <unresolved_issues>1. Components in manufacturing and products do not necessarily have to be self-standing products. Some components are never sold. I think we can strike this. Also, see expanded discussion and new definition under term component role.</unresolved_issues>
-        <rdfs:comment>All components exist initially as self-standing products, since they have to be manufactured.</rdfs:comment>
+        <definition-FOL>Component(x) ≡ MaterialEntity(x) ∧∃r (ComponentRole(r) ∧ hasRole(x, r))</definition-FOL>
+        <definition-NL>A portion of material, part, assembly, sub-system or thing, that becomes part of some higher-level processed material or compound, part, assembly or system, as prescribed by some product or packaging bill of material.</definition-NL>
+        <definition-SemiFOL>Component =def. Material Entity when it has a Component Role</definition-SemiFOL>
+        <definition_other_common>1. A raw material, part, or subassembly that goes into a higher level assembly, compound, or the final product. This term may also include packaging materials for finished items [APICS].
+
+2. An individual piece used in the assembly of a single unit of equipment [ISO 13533:2001]</definition_other_common>
+        <unresolved_issues>Changes made to the 2019 definition (and reflected above):
+ 
+1. Components in manufacturing are not necessarily self-standing products. Some components are never sold. I struck this comment.
+
+2. Asserted this under material entity vs material artifact. There are components of in discrete products and as part of &quot;recipes&quot; in batch processes (as in batch chemical, cosmetics, plastics, etc.) in which the &quot;component ingredients&quot; are in fact not man-made. Basic example is &quot;water&quot; which is mixed in with other raw material components, to produce the product or some intermediate-level processed material. Similar examples are found in the continuous process industries. Of course the argument can be made that all raw materials, as they arrive at the factory, are processed materials. To be discussed further and then decided. Then of course we have Hyunmin&apos;s counter example: The sea shells my daughter collects on the beach to be packaged in her garage and listed/sold to customers on the Amazon online marketplace as product;-)
+
+Other proposed changes:
+
+1. Component is a synonym for part and enters the realm of parthood and philosophical discussions. To avoid this, we should rename it, perhaps to Product Component.</unresolved_issues>
         <rdfs:label xml:lang="en">Component</rdfs:label>
+        <skos:altLabel>part, item</skos:altLabel>
     </owl:Class>
     
 
@@ -869,28 +899,28 @@ if capability → exists agent with requirment that it satisfies</definition-NL>
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#ComponentRole">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
-        <definition-NL>Component role is a role a thing bears when it is intended to be part of some material artifact as prescribed by some bill of material.</definition-NL>
-        <definition-SemiFOL></definition-SemiFOL>
-        <definition_other_common>1. A raw material, part, or subassembly that goes into a higher level assembly, compound, or the final product. This term may also include packaging materials for finished items [APICS].
-
-2. An individual piece used in the assembly of a single unit of equipment [ISO 13533:2001]</definition_other_common>
+        <definition-NL>A role a thing bears when it is intended to be part of some material artifact as prescribed by some product or packaging bill of material.</definition-NL>
+        <definition-SemiFOL>Component Role =def. Role a Material Entity has when some Agent intends it to become part of some higher-level material artifact, as prescribed by some bill-of-material specification.</definition-SemiFOL>
         <example_counter>Software component &lt;CW&gt; with our workaround of allowing software to be carried an information bearing artifact, this counter example can be moved to a valid example.</example_counter>
-        <unresolved_issues>1. Propose revised definition above to reflect more the standard meaning in manufacturing. Former defintion was &quot;role inhering in a material artifact that is designed to be a proper continuant part of some material artifact.&quot; Arguments include:
+        <unresolved_issues>The above revised definition aligns more with the standard meaning in manufacturing for term component. For reference, the former defintion was &quot;role inhering in a material artifact that is designed to be a proper continuant part of some material artifact.&quot; 
+
+Arguments for the changes include:
  
-(a) replaced material artifact with &quot;material entity that is not an agent,&quot; since portions of material substances and subsystems can be components too. Moved defined class Component under material entity as well.
+(a) replaced material artifact with &quot;material entity since portions of materials and discrete &quot;things&quot; found in nature can be components too. 
 
-(b) All components appear in some bill of material (maintenance BOM, product BOM, engineering BOM, planning BOM, manufacturing BOM, packaging BOM) at some level below the root. If we accept this new definition, we will have to introduce term BOM.
+(b) Also replaced material artifact with material entity on the output side, or the &quot;thing&quot; that the component becomes a part of, since a component may become part of a &quot;system,&quot; and systems are not currently material artifacts as we envision, rather they are object aggregates. We may ultimately want to move systems under object, but that has its own issues. To be debated and figured out! 
 
-(c) We could leave Neil&apos;s notion in the ontology as a super-class of the above, and and rename the new term/subclass to &quot;manufacturing component role.&quot;
+(c) In industrial contexts, all components appear in some bill of material, be that some maintenance BOM, product BOM, engineering BOM, planning BOM, manufacturing BOM, or packaging BOM. The &quot;position&quot; the component appears at will surely be some level below the root level. We need to introduce BOM soon anyway, and once we do, we can refine the formalization here a bit.
 
-4. A component can be a raw material -- as in appear at the lowest level of some BOM. (Don&apos;t forget to update definition of raw material to reflect this once adding in BOM.)
+(d) NOTE: We could leave Neil&apos;s 2019 proposed notion in the ontology as a super-class of the above, and perhaps rename this term/notion to &quot;product component role.&quot;
 
-5. Do we need to restrict the scope of material entity to exclude agent and various types of object aggregates? 
+Other issues pending:
 
-6. In batch and continuous process industries, portions of materials are mixed together to create compound materials, or react to create portions of some new material, that are sold as manufactured product or be semi-processed materials consumed in downstream processes. These are all considered component materials or portions of some component material. We may need to further relax the above definition to say that the thing the component becomes a part of, is a material entity. But this starts to conflict with parthood rules. TBD</unresolved_issues>
+1. A component can be a raw material -- as in appear at the lowest level of some BOM. Once we define the architecture of BOMs, we need not forget to update our definition for raw material to reflect that it must exist at the &quot;leaf level&quot; of some BOM for some business entity.
+
+2. Do we need to restrict the scope of component so it excludes agents and various types of object aggregates, like organizations? This is an ontological question.</unresolved_issues>
         <cco:example_of_usage>screw, crank shaft, transistor, cardboard separator (that goes into a box as part of packaging), engine.</cco:example_of_usage>
         <rdfs:label xml:lang="en">Component Role</rdfs:label>
-        <skos:altLabel>part, item</skos:altLabel>
     </owl:Class>
     
 
@@ -909,9 +939,10 @@ if capability → exists agent with requirment that it satisfies</definition-NL>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.industrialontologies.org/core#Agent"/>
-        <definition-FOL>customer(​x​) ≡ ​∃​y(​ customer role(​y)​ &amp; has-role(​x,​ ​y)​ )</definition-FOL>
-        <definition-NL>def. agent who bears some customer role.</definition-NL>
+        <definition-FOL>Customer(​x​) ≡ ​Agent(x) ∧ ∃​y(​ customer role(​y)​ ∧ has-role(​x,​ ​y)​ )</definition-FOL>
+        <definition-NL>A customer is a person or organization that buys a good or service.</definition-NL>
+        <definition-SemiFOL>Customer =def. Agent when it has a Customer Role.</definition-SemiFOL>
+        <unresolved_issues>This term needs to go through further analysis. Perhaps we need to differentiate between a customer that is the &quot;receiving party&quot; in some commercial exchange and part of a supply network, vs the consumer, also a kind of customer, who buys goods and services for &quot;consumption&quot; (as defined from in economic theory).</unresolved_issues>
         <rdfs:label xml:lang="en">Customer</rdfs:label>
     </owl:Class>
     
@@ -921,8 +952,8 @@ if capability → exists agent with requirment that it satisfies</definition-NL>
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#CustomerRole">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
-        <definition-NL>def. role inhering in an Agent that comes into existence as an output of some purchasing agreement process, and which is subsequently realized in some Purchasing Process.</definition-NL>
-        <unresolved_issues>This and numerous other terms and notions need to be analyzed in this area. Topic of the SC WG?</unresolved_issues>
+        <definition-NL>A customer role is a role a person or organization bears when it buys a good or service from some other person or organization.</definition-NL>
+        <definition-SemiFOL>Customer =def. Role an Agent has when it engages in a Purchasing Process.</definition-SemiFOL>
         <rdfs:label xml:lang="en">Customer Role</rdfs:label>
     </owl:Class>
     
@@ -943,12 +974,9 @@ if capability → exists agent with requirment that it satisfies</definition-NL>
     <!-- http://www.industrialontologies.org/core#Feature -->
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#Feature">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
-        <definition-NL xml:lang="en">A feature is a characteristic of a material artifact or process (primitive).</definition-NL>
-        <unresolved_issues>Shouldn&apos;t this be moved under &quot;entity?&quot; 
-Do we also introduce subclasses for product feature, manufacturing feature, etc.?
-
-Dusan is analyzing this term and will propose next steps.</unresolved_issues>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <definition-NL xml:lang="en">A feature is a characteristic of a material artifact or process.</definition-NL>
+        <unresolved_issues>Dusan is analyzing this term and will propose next steps.</unresolved_issues>
         <rdfs:comment>“Feature” (like “characteristic”) is an umbrella term including in its coverage domain: qualities, parts of a material product (for example, chromium plating), a hole within a material product (for example, a button hole), as well as information entities, as well as metalevel characteristics such as availability, reliability, average dimensions, as well as characteristics of processes such as rate, continuity, and so forth</rdfs:comment>
         <rdfs:label xml:lang="en">Feature</rdfs:label>
     </owl:Class>
@@ -992,6 +1020,33 @@ https://en.wikipedia.org/wiki/Workforce_management</unresolved_issues>
         <cco:example_of_usage>Employee; contractor</cco:example_of_usage>
         <rdfs:comment>Person here includes permanent full-time, part-time, andr temporary employees, as well as independent contractors, comprising the &quot;blended workforce&quot; of an organization</rdfs:comment>
         <rdfs:label>Human Resource</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.industrialontologies.org/core#IAO_0000005 -->
+
+    <owl:Class rdf:about="http://www.industrialontologies.org/core#IAO_0000005">
+        <rdfs:subClassOf rdf:resource="http://www.ontologyrepository.com/CommonCoreOntologies/DirectiveInformationContentEntity"/>
+        <source xml:lang="en">OBI Plan and Planned Process/Roles Branch</source>
+        <source xml:lang="en">OBI_0000217</source>
+        <unresolved_issues xml:lang="en">2019-12-31 (Chris Will): Need to have a discussion on this. At a minimum, it needs to be cleaned up.</unresolved_issues>
+        <cco:definition xml:lang="en">a directive information entity that describes an intended process endpoint. When part of a plan specification the concretization is realized in a planned process in which the bearer tries to effect the world so that the process endpoint is achieved.</cco:definition>
+        <cco:example_of_usage xml:lang="en">In the protocol of a ChIP assay the objective specification says to identify protein and DNA interaction.</cco:example_of_usage>
+        <rdfs:label xml:lang="en">Objective specification</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.industrialontologies.org/core#IAO_0000007 -->
+
+    <owl:Class rdf:about="http://www.industrialontologies.org/core#IAO_0000007">
+        <rdfs:subClassOf rdf:resource="http://www.ontologyrepository.com/CommonCoreOntologies/DirectiveInformationContentEntity"/>
+        <definition-SemiFOL>step specification =def. action specification that prescribes some step to be performed by a person, and is part of a manufacturing operation specification.</definition-SemiFOL>
+        <source xml:lang="en">OBI Plan and Planned Process branch</source>
+        <cco:definition xml:lang="en">a directive information entity that describes an action the bearer will take</cco:definition>
+        <cco:example_of_usage xml:lang="en">Pour the contents of flask 1 into flask 2</cco:example_of_usage>
+        <rdfs:label xml:lang="en">Action specification</rdfs:label>
     </owl:Class>
     
 
@@ -1539,13 +1594,15 @@ Part of this will be dependent on what definition we settle on for term plan spe
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000030"/>
         <definition-SemiFOL>Portion of Input Material =def. Object when it bears some Input Material Role</definition-SemiFOL>
         <example_counter>People, machines, tools, &amp; pieces of equipment.</example_counter>
-        <unresolved_issues>1. We&apos;ve previously added the counter examples above but I don&apos;t believe they are valid since none of them are inputs to a manufacturing process. Rather, they participate in manufacturing processes via the usedIn or are AgentIn relations.
+        <unresolved_issues>1. We&apos;ve previously added the counter examples above but I don&apos;t believe they are valid since none of them are inputs to a manufacturing process. Rather, they participate in manufacturing processes via the Used-in or are Agent-in relations.
 
-2. Aren&apos;t the inputs to a manufacturing process specified in some directive ICE, as in e.g., a process specification, the work instructions, a BOM (picklist), etc.? To be discussed.
+2. Aren&apos;t the inputs to a manufacturing process specified in some directive ICE? As in e.g. a process specification, the work instructions, a BOM (picklist), etc.? To be discussed.
 
-3. Why is portion of input material not asserted under Object Aggregate? I believe the answer is lack of causal unity (see BFO 2.0 reference document).
+3. If we are to introduce a class like this, why not then introduce simply &quot;Input Material (defined class) =def. Material Entity and bears Input Material Role?&quot; This will be come useful in definiing Manufacturing Process (see its definition).
 
-4. If we are to introduce a class like this, why not then introduce simply &quot;Input Material (defined class) =def. Material Entity and bears Input Material Role?&quot; This will be come useful in definiing Manufacturing Process (see its definition).</unresolved_issues>
+4. Why is this asserted under material entity? More generally, this issue concerns portions of solids, liquids and gases – perhaps man-made but also as found in nature. As we proceed in adding additional terms to the core IOF ontology to handle various types of portions of solids, liquids and gases – all portions of matter – we will create many sibling classes to object aggregate, object, and fiat object part. That clouds the purpose of these BFO classes. We should only introduce sibling classes here for good reasons. Alternative approaches? Option (a) would be to assert a grouping class under material entity, say “a portion of material,” and put the various portions of xyz beneath it. But in fact, a portion of material and material entity are synonymous. So this would not solve our problem. Alternatively, option (b) would be to put all portions of xyz under object, after all, a rock, a portion of water, and even a portion of gas andd portion of sub-atomic particles, all fit nicely under object and we can come up with arguments on how they satisfy the rules in effect for object, such as satisfying its causal unity criterion (see Barry&apos;s arguments for &quot;rock&quot; in the BFO 2.0 reference document).
+
+Note that in CCO, they have &quot;portion of material&quot; asserted under &quot;portion of processed material,&quot; which is asserted under &quot;material artifact.&quot; But certainly portions of input materials to a manufacturing process may ones found in nature (as in water to enable a chemical reaction). So we can&apos;t place portion of input material and raw materials under material artifact. Of course, the CCO guys can always argue that the water available on the shop floor for use in a batch chemical process, is in fact processed, as it has traveled from the pond, through a water department&apos;s processing plants and piping, to be delivered to the factory. The devil is in the details of how we formalize these terms, and what actually survives the dilution that happens as we express it in OWL;-)</unresolved_issues>
         <cco:example_of_usage>Raw material (plastic pellets, sheet metal); sub-assemblies (engine module, IC circuits); components (screws, crank shafts, transistors)</cco:example_of_usage>
         <rdfs:label xml:lang="en">Portion of Input Material</rdfs:label>
     </owl:Class>
@@ -1576,16 +1633,7 @@ Part of this will be dependent on what definition we settle on for term plan spe
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Class>
-                        <owl:complementOf>
-                            <owl:Class>
-                                <owl:unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://www.industrialontologies.org/core#Person"/>
-                                    <rdf:Description rdf:about="http://www.ontologyrepository.com/CommonCoreOntologies/GroupOfAgents"/>
-                                </owl:unionOf>
-                            </owl:Class>
-                        </owl:complementOf>
-                    </owl:Class>
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000002"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://www.industrialontologies.org/core#RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://www.industrialontologies.org/core#ProductRole"/>
@@ -1593,10 +1641,9 @@ Part of this will be dependent on what definition we settle on for term plan spe
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
-        <definition-FOL>Product(x) ≡ Continuant(x) ∧ ¬(Agent(x) ∨ GroupOfAgents(x)) ∧ ∃r (Product_Role(r) ∧ hasRole(x, r))</definition-FOL>
-        <definition-NL>A good some person or organization intends to sell.</definition-NL>
-        <definition-SemiFOL>A Product is some Continuant that is not an Agent or Group of  Persons, and there is a Resource Role that Continuant has or bears.</definition-SemiFOL>
+        <definition-FOL>Product(x) ≡ Continuant(x)) ∧ ¬(Agent(x) ∨ GroupOfAgents(x) ∨ SpatialRetion(x)) ∧ ∃r (ProductRole(r) ∧ hasRole(x, r))</definition-FOL>
+        <definition-NL>A product is some thing a person or organization intends to sell.</definition-NL>
+        <definition-SemiFOL>Product =def. Continuant when it has a Product Role (defined class)</definition-SemiFOL>
         <definition_other_common>1. A good or service produced for sale, barter,  or internal use [APICS].
 2. A tangible outcome of a process [ISO 6707-3:2017, para. 3.1.5]
 3. Any good or service [ISO/Guide 64:2008]</definition_other_common>
@@ -1604,19 +1651,21 @@ Part of this will be dependent on what definition we settle on for term plan spe
         <source>IOF group discussions.</source>
         <unresolved_issues>1. We might move this term up under &quot;entity&quot; allowing services to be treated as products? As of 3-Mar-2020, group agreed to study use cases from the PSS and SC working groups and then reach a decision.
 
-2. If we leave intention in the definition, do we add the part (as found in the common definitions) about &quot;produces for sale, barter or internal use&quot;? 
+2. If we leave intention in the definition, do we add the down-stream modes where the Agent actually has sold the thing? 
 
-3. Is a product still a product when it is no longer sold but still supported? These are phase sortals for product and might be handled by modal relations ontology???
+3. We need to introduce &quot;act of selling,&quot; and when we do, is &quot;act of bartering&quot; a subclass?  
 
-4. Should we introduce term &quot;good&quot; or &quot;economic good?&quot;
+4. Is a product still a product when the Agent no longer intends to sell it, but the organization may still be on the hook for product liability law suites, or the safe disposal of products in the marketplace? 
 
-5. Do we need to exclude land and real estate on which a structure (building, house, condominium) is situated?</unresolved_issues>
+5. Should we introduce term &quot;good&quot; or &quot;economic good?&quot;
+
+6. Do we want to exclude land and real estate from our definition? E.g., the current definition would include homes manufactured in a factory as well as the buildings and homes commercial and residential builders construct on land, and sell as products, which necessarily will include the land on which they are constructed.</unresolved_issues>
         <cco:example_of_usage>1. Generically dependent continuants: The Office 365 &quot;application software&quot; Microsoft hosts on its cloud infrastructure and sells; BMW&apos;s Dinan performance upgrade or &quot;firmware&quot; the organization sells; the SAP Production Planning and Material Management module configuration templates. 
 
 2. Natural resources: the seashells lying on the beach that some person intends to collect, package and sell; the iron ore in a mountain the rights to which some mining company has just purchased which they intend to mine and sell to iron-making processors. Parcels of real estate some land developer sells to builders.
 
 3. Any manufactured good (see subclass manufactured product).</cco:example_of_usage>
-        <rdfs:comment>This definition leaves open the possibility that generically dependent continuants, immaterial entities (continuant fiat boundaries, sites and spatial regions), and naturally-occurring entities, may be products. But, as currently defined, the definition excludes services sold as product. Here, we deviate from some common and industry standard definition in which both goods and services can be sold as product.</rdfs:comment>
+        <rdfs:comment>This definition leaves open the possibility that generically dependent continuants, immaterial entities (continuant fiat boundaries, sites and spatial regions), and naturally-occurring entities, may be products. However, the definition does exclude services sold as product which deviates from some industry standard definitions.</rdfs:comment>
         <rdfs:label xml:lang="en">Product</rdfs:label>
     </owl:Class>
     
@@ -1684,7 +1733,7 @@ Action Items:
 3. Note that the various parts of a product production process, for example, inspection, testing, cannot be a product production process by themselves.
 
 4. Some manufacturing processes will also be product production processes.</rdfs:comment>
-        <rdfs:label xml:lang="en">Product Production Process (to be deprecated)</rdfs:label>
+        <rdfs:label xml:lang="en">Product Production Process</rdfs:label>
     </owl:Class>
     
 
@@ -1694,9 +1743,9 @@ Action Items:
     <owl:Class rdf:about="http://www.industrialontologies.org/core#ProductRole">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
         <definition-NL>A role a continuant has because some agent intends to sell it.</definition-NL>
-        <definition-NL>Open action items:
-1. Do we want to keep &quot;intends to sell&quot; in the definition and as proposed above in the comments? If we keep &quot;intends to sell&quot; in the definition, we need to introduce a relation for this.
-3. Concerning the &quot;end of life&quot; of a product, when a continuant is no longer to carry the product role, do we extend the definition to include this eventuality?</definition-NL>
+        <unresolved_issues>1. Do we want to keep &quot;intends to sell&quot; in the definition and as proposed above in the comments? If we keep &quot;intends to sell&quot; in the definition, we need to introduce a relation for this.
+
+2. Concerning the &quot;end of life&quot; of a product, when a continuant is no longer to carry the product role, do we extend the definition to include this eventuality?</unresolved_issues>
         <rdfs:comment>1. The BFO term ‘role’ is used extensively in this formalization to do justice to those cases where general terms are ​phase sortals,​ which means they hold only for certain phases in the existence of the relevant entities. Thus, for example, a given material entity may be correctly describable as a ​prototype at one phase in its existence and as a ​product​ in a later phase.
 
 Although the above holds true for the general use of roles, we choose here to insert &quot;intends to sell&quot; into the definition, allowing us to have an umbrella term that covers all phases a product&apos;s life cycle, including those before it physically exists or is available to be sold. This would suggest we might introduce subclasses such as &quot;product-in-design role,&quot; &quot;prototype product role,&quot; etc., as the ontology evolves.
@@ -1733,9 +1782,8 @@ Note, the end of life process in some cases might be when the Agent who sells ce
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.industrialontologies.org/core#Agent"/>
-        <definition-FOL>prospective-customer(​x)​ ≡ ​∃​y(capability(​y​) &amp; has-capability(​x​, ​y)​ &amp; ​∀p​ (​ realizes(y​ ​, ​p​) → Purchasing-Process(​p​))</definition-FOL>
-        <definition-NL>def. agent capable of performing a Purchasing Process.</definition-NL>
+        <definition-NL>A prospective customer is a person or organization intending to purchase some good or service, that engages in dialogue with another Agent, that is capable of selling or providing the desired good or service.</definition-NL>
+        <definition-SemiFOL>Prospective Customer =def. Agent when it has a Prospective Customer Role.</definition-SemiFOL>
         <unresolved_issues>This and numerous other terms and notions need to be analyzed in this area. Topic of the SC WG?</unresolved_issues>
         <rdfs:comment>“Prospective customer” and “potential customer” are synonyms.</rdfs:comment>
         <rdfs:label xml:lang="en">Prospective Customer</rdfs:label>
@@ -1747,10 +1795,11 @@ Note, the end of life process in some cases might be when the Agent who sells ce
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#ProspectiveCustomerRole">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
-        <definition-NL>def. (primitive term): the role inhering in an agent from the point in time when a disposition to purchase exists to the point in time when the purchasing act is initiated:
-							 
-instance-of(x, prospective-customer-role, t) → ∃y, z(agent(y, t) &amp; has-role(x, y, t) &amp;(has-disposition(y, z, t) &amp; ∀w(realizes(w, z) → ∃t′(instance-of(w, purchasing-act, t′) &amp; precedes(t, t′))</definition-NL>
-        <unresolved_issues>This and numerous other terms and notions need to be analyzed in this area. Topic of the SC WG?</unresolved_issues>
+        <definition-NL>A prospective customer role is a role a person or organization has from the point in time when an intention to purchase a particular good or service begins, to the point in time when an act of purchasing commences.</definition-NL>
+        <definition-SemiFOL>Prospective Customer Role =def. Role an Agent has when it engages in a Sourcing Discussion Process with some Prospective Supplier or Prospective Seller.</definition-SemiFOL>
+        <unresolved_issues>Needs further analysis. If on the right track, we of course would need to add classes for Sourcing Discussion Process, Prospective Supplier, and Prospective Seller. 
+
+But much of the analysis should look at commercial exchange use cases between trading partners on the one hand, and between business entities and the end consumer on the other.</unresolved_issues>
         <rdfs:label xml:lang="en">Prospective Customer Role</rdfs:label>
     </owl:Class>
     
@@ -1810,13 +1859,21 @@ Of course with this we need to introduce bill-of-material. Also, one division of
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#Resource">
         <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000196"/>
-                <owl:someValuesFrom rdf:resource="http://www.industrialontologies.org/core#ResourceRole"/>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000002"/>
+                    <owl:Class>
+                        <owl:complementOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000006"/>
+                    </owl:Class>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.industrialontologies.org/core#RO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="http://www.industrialontologies.org/core#ResourceRole"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
-        <definition-NL>resource =def. a continuant that bears some resource role (defined class)</definition-NL>
+        <definition-NL>A resource is some thing available to a person or organization to use.</definition-NL>
+        <definition-SemiFOL>Resource =def. Continuant when it has a Resource Role (defined class)</definition-SemiFOL>
         <definition_other_common xml:lang="en">1. A stock or supply of money, materials, staff, and other assets that can be drawn on by a person or organization in order to function effectively [Google Dictionary].
 
 2. A source or supply from which a benefit is produced and that has some utility [Wikipedia].</definition_other_common>
@@ -1877,9 +1934,10 @@ Of course with this we need to introduce bill-of-material. Also, one division of
     <!-- http://www.industrialontologies.org/core#StepSpecification -->
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#StepSpecification">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000007"/>
+        <rdfs:subClassOf rdf:resource="http://www.industrialontologies.org/core#IAO_0000007"/>
         <definition-NL>step specification =def. action specification that prescribes some step a person is to perform as part of a manufacturing operation.</definition-NL>
-        <rdfs:comment>1. A step specification prescribes some &quot;minimal action&quot; to be performed by a person participating in (playing a causal role in) realizing some manufacturing operation. 
+        <rdfs:comment>1. A step specification prescribes some &quot;minimal action&quot; to be performed by a person participating in (playing a causal role in) realizing some manufacturing operation.
+ 
 
 2. A step specification is always part of some manufacturing operation specification.
 
@@ -1893,15 +1951,21 @@ Of course with this we need to introduce bill-of-material. Also, one division of
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#Supplier">
         <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.industrialontologies.org/core#RO_0000087"/>
-                <owl:someValuesFrom rdf:resource="http://www.industrialontologies.org/core#SupplierRole"/>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologyrepository.com/CommonCoreOntologies/Organization"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.industrialontologies.org/core#RO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="http://www.industrialontologies.org/core#SupplierRole"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://www.industrialontologies.org/core#Agent"/>
         <definition-FOL>supplier(​x​) ≡ ​∃y​ (​ supplier role(​y​) &amp; has-role(​y​, ​x​))</definition-FOL>
-        <definition-NL>def. agent who bears a supplier role.</definition-NL>
-        <rdfs:comment>‘provider’ is a synonym of ‘supplier’.</rdfs:comment>
+        <definition-NL>A supplier is an organization that sells goods or services to some other organization.</definition-NL>
+        <definition-SemiFOL>Supplier =def. Organization when it has a Supplier Role.</definition-SemiFOL>
+        <unresolved_issues>This terms needs to go through an analysis effort. For starters, when organizations engage in acts of selling that are part of some commercial exchange between businesses, then the role of supplier takes shape. When a consumer buys groceries or an article of clothing from a store or online retailer, the store/retailer is not ever considered to be a supplier relative to the consumer.</unresolved_issues>
         <rdfs:label xml:lang="en">Supplier</rdfs:label>
     </owl:Class>
     
@@ -1911,9 +1975,10 @@ Of course with this we need to introduce bill-of-material. Also, one division of
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#SupplierRole">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
-        <definition-FOL>supplier role(​x)​ ≡ ​∃​y​(agent(y​ )​ &amp; has-role(​y​, ​x)​ &amp; ​∀p​ ​((process(​p​) &amp; realizes(​y,​ ​p)​ ) → act-of-selling(​p)​ )</definition-FOL>
-        <definition-NL>def. role inhering in an agent that, if realized, is realized in some Selling Process.</definition-NL>
-        <unresolved_issues>This and numerous other terms and notions need to be analyzed in this area. Topic of the SC WG?</unresolved_issues>
+        <definition-FOL>Supplier Role(​x)​ ≡ ​Role(x) ∧ ∃​y​ ∃p(agent(y​ )​ ∧ SalesProcess(p) ∧ has-role(​y​, ​x)​ &amp; ​realizes(​p,​ x) ∧ hasAgent(p, y))</definition-FOL>
+        <definition-NL>A supplier role is a role an agent has when it sells a good or service to another agent.</definition-NL>
+        <definition-SemiFOL>Supplier Role =def. Role an Agent has when it engages in a Sales Process.</definition-SemiFOL>
+        <unresolved_issues>Need to add class Sales Process</unresolved_issues>
         <rdfs:label xml:lang="en">Supplier Role</rdfs:label>
     </owl:Class>
     
@@ -1970,7 +2035,7 @@ Of course with this we need to introduce bill-of-material. Also, one division of
     <!-- http://www.industrialontologies.org/core#TaskDescription -->
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#TaskDescription">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <rdfs:subClassOf rdf:resource="http://www.industrialontologies.org/core#IAO_0000005"/>
         <definition-NL>A task specification prescribes some action intended to be assigned to and performed by some person or group of persons, that specifies or sets some expecation as to the timeframe in which it is to occur.</definition-NL>
         <definition-SemiFOL>task description =def. an objective specification that prescribes some task that is intended to be concretized by a specific person or group of persons, and which specifies some starting or ending timeframe in which the task is to occur.</definition-SemiFOL>
         <definition_other_common>See definitions under term Task.</definition_other_common>
@@ -1990,6 +2055,12 @@ Of course with this we need to introduce bill-of-material. Also, one division of
 
     <owl:Class rdf:about="http://www.industrialontologies.org/core#Template">
         <rdfs:subClassOf rdf:resource="http://www.industrialontologies.org/core#zzzDeprecated"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.industrialontologies.org/core#RO_0000087"/>
+                <owl:someValuesFrom rdf:resource="http://www.industrialontologies.org/core#ProductRole"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <definition-FOL>fol</definition-FOL>
         <definition-NL>NL</definition-NL>
         <definition-NL>SME def</definition-NL>
@@ -2001,7 +2072,7 @@ Of course with this we need to introduce bill-of-material. Also, one division of
         <unresolved_issues>Issue 1</unresolved_issues>
         <cco:example_of_usage>example 1</cco:example_of_usage>
         <rdfs:comment>explanations &amp; assumptions</rdfs:comment>
-        <rdfs:label>template</rdfs:label>
+        <rdfs:label>template product</rdfs:label>
         <skos:altLabel>alt label</skos:altLabel>
     </owl:Class>
     
@@ -2105,18 +2176,6 @@ Of course with this we need to introduce bill-of-material. Also, one division of
 
     <owl:Class rdf:about="http://www.ontologyrepository.com/CommonCoreOntologies/GroupOfAgents">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000027"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://www.industrialontologies.org/core#Agent"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:allValuesFrom rdf:resource="http://www.industrialontologies.org/core#Agent"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <cco:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An Object Aggregate that has only Agents as parts.</cco:definition>
         <cco:is_curated_in_ontology rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://www.ontologyrepository.com/CommonCoreOntologies/Mid/AgentOntology</cco:is_curated_in_ontology>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Group of Agents</rdfs:label>
@@ -2173,6 +2232,25 @@ Of course with this we need to introduce bill-of-material. Also, one division of
         <cco:is_curated_in_ontology>http://www.ontologyrepository.com/CommonCoreOntologies/Mid/EventOntology</cco:is_curated_in_ontology>
         <rdfs:label>Process History</rdfs:label>
     </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000004"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000020"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        </owl:members>
+    </rdf:Description>
 </rdf:RDF>
 
 
