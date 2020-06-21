@@ -1,4 +1,5 @@
 @prefix : <http://www.industrialontologies.org/core#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
 @prefix iof: <http://www.industrialontologies.org/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -71,6 +72,10 @@ cco:definition rdf:type owl:AnnotationProperty ;
                rdfs:label "definition"@en .
 
 
+###  http://www.ontologyrepository.com/CommonCoreOntologies/definition_source
+cco:definition_source rdf:type owl:AnnotationProperty .
+
+
 ###  http://www.ontologyrepository.com/CommonCoreOntologies/elucidation
 cco:elucidation rdf:type owl:AnnotationProperty ;
                 cco:definition "A clarification or further explanation of a term beyond what is included in the Definition or which is used when the term is primitive such that no non-circular definition can be given for it." ;
@@ -96,6 +101,11 @@ cco:is_curated_in_ontology rdf:type owl:AnnotationProperty ;
 
 ###  http://purl.obolibrary.org/obo/BFO_0000051
 bfoo:BFO_0000051 rdf:type owl:ObjectProperty .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000108
+bfoo:BFO_0000108 rdfs:domain bfoo:BFO_0000001 ;
+                 rdfs:range bfoo:BFO_0000008 .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000196
@@ -187,25 +197,6 @@ iof:RO_0000092 rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf bfoo:BFO_0000197 ;
                cco:definition "inverse of has disposition" ;
                rdfs:label "disposition of"@en .
-
-
-###  http://www.industrialontologies.org/core#RO_0001000
-iof:RO_0001000 rdf:type owl:ObjectProperty ;
-               owl:inverseOf iof:RO_0001001 ;
-               cco:definition "This is a very general relation. More specific relations are preferred when applicable, such as 'directly develops from'."@en ,
-                              "a relation between two distinct material entities, the new entity and the old entity, in which the new entity begins to exist when the old entity ceases to exist, and the new entity inherits the significant portion of the matter of the old entity"@en ;
-               cco:example_of_usage "this cell derives from this parent cell (cell division)"@en ,
-                                    "this nucleus derives from this parent nucleus (nuclear division)"@en ;
-               rdfs:label "derives from"@en .
-
-
-###  http://www.industrialontologies.org/core#RO_0001001
-iof:RO_0001001 rdf:type owl:ObjectProperty ;
-               cco:definition "This is a very general relation. More specific relations are preferred when applicable, such as 'directly develops into'. To avoid making statements about a future that may not come to pass, it is often better to use the backward-looking 'derives from' rather than the forward-looking 'derives into'."@en ,
-                              "a relation between two distinct material entities, the old entity and the new entity, in which the new entity begins to exist when the old entity ceases to exist, and the new entity inherits the significant portion of the matter of the old entity"@en ;
-               cco:example_of_usage "this parent cell derives into this cell (cell division)"@en ,
-                                    "this parent nucleus derives into this nucleus (nuclear division)"@en ;
-               rdfs:label "derives into"@en .
 
 
 ###  http://www.industrialontologies.org/core#RO_0001015
@@ -426,6 +417,29 @@ cco:designates rdf:type owl:ObjectProperty ;
                rdfs:label "designates"^^xsd:string .
 
 
+###  http://www.ontologyrepository.com/CommonCoreOntologies/has_input_at_some_time
+cco:has_input_at_some_time rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf bfoo:BFO_0000057 ;
+                           owl:inverseOf cco:is_input_of_at_some_time ;
+                           rdfs:domain bfoo:BFO_0000015 ;
+                           rdfs:range bfoo:BFO_0000002 ;
+                           cco:definition "Inverse of is_input_of, a relation between a Processual Entity and a Continuant such that the presence of the Continuant at the beginning of the Processual Entity is a necessary condition for the start of the Processual Entity."^^xsd:string ;
+                           cco:is_curated_in_ontology "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/ExtendedRelationOntology"^^xsd:string ;
+                           rdfs:label "has input at some time"^^xsd:string .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/has_output_at_some_time
+cco:has_output_at_some_time rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf bfoo:BFO_0000057 ;
+                            owl:inverseOf cco:is_output_of_at_some_time ;
+                            rdfs:domain bfoo:BFO_0000015 ;
+                            rdfs:range bfoo:BFO_0000002 ;
+                            cco:definition "Inverse of is_output_of, a relation between a Processual Entity and a Continuant such that the presence of the Continuant at the end of the Processual Entity is a necessary condition for the completion of the Processual Entity"^^xsd:string ;
+                            cco:definition_source "https://en.wikipedia.org/wiki/IPO_model"^^xsd:string ;
+                            cco:is_curated_in_ontology "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/ExtendedRelationOntology"^^xsd:string ;
+                            rdfs:label "has output at some time"^^xsd:string .
+
+
 ###  http://www.ontologyrepository.com/CommonCoreOntologies/is_about
 cco:is_about rdf:type owl:ObjectProperty ;
              owl:inverseOf cco:is_subject_of ;
@@ -435,6 +449,26 @@ cco:is_about rdf:type owl:ObjectProperty ;
              cco:definition "A primitive relationship between an Information Content Entity and some Entity." ;
              cco:is_curated_in_ontology "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/InformationEntityOntology" ;
              rdfs:label "is about" .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/is_input_of_at_some_time
+cco:is_input_of_at_some_time rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf bfoo:BFO_0000056 ;
+                             rdfs:domain bfoo:BFO_0000002 ;
+                             rdfs:range bfoo:BFO_0000015 ;
+                             cco:definition "A relation between a Continuant and a Processual Entity in which the Continuant participates. The presence of the Continuant at the begining of the Processual Entity is a necessary condition for the start of the Processual Entity."^^xsd:string ;
+                             cco:is_curated_in_ontology "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/ExtendedRelationOntology"^^xsd:string ;
+                             rdfs:label "is input of at some time"^^xsd:string .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/is_output_of_at_some_time
+cco:is_output_of_at_some_time rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf bfoo:BFO_0000056 ;
+                              rdfs:domain bfoo:BFO_0000002 ;
+                              rdfs:range bfoo:BFO_0000015 ;
+                              cco:definition "A relation between a Continuant and a Processual Entity in which the Continuant participates. The presence of the Continuant at the end of the Processual Entity is a necessary condition for the completion of the Processual Entity."^^xsd:string ;
+                              cco:is_curated_in_ontology "http://www.ontologyrepository.com/CommonCoreOntologies/Mid/ExtendedRelationOntology"^^xsd:string ;
+                              rdfs:label "is output of at some time"^^xsd:string .
 
 
 ###  http://www.ontologyrepository.com/CommonCoreOntologies/is_subject_of
@@ -561,7 +595,7 @@ Obviously need to formalize what it means to not damage a material artifact/enti
 ###  http://www.industrialontologies.org/core#AssemblyLineProcess
 iof:AssemblyLineProcess rdf:type owl:Class ;
                         rdfs:subClassOf iof:ManufacturingProcess ;
-                        iof:definition-NL "assembly line process =def. manufacturing process in which the collection of manufacturing operations that comprise it are arranged in sequential fashion in the order in which the parts are added to the assembly,  which has at least one assembly operation and may optionally include planned processes, and which produces an output assembly." ;
+                        iof:definition-NL "assembly line process =def. manufacturing process in which the collection of manufacturing operations that comprise it, are arranged in sequential fashion in the order in which the parts are added to the assembly." ;
                         iof:definition_other_common """1. [An assembly line process is] a manufacturing process in which parts are added as the semi-finished assembly moves from workstation to workstation, where the parts are added in sequence until the final assembly is produced [Wikipedia].
 
 2. An assembly line [is a manufacturing process] in which equipment and work centers are laid out to follow the sequence in which raw materials and parts are assembled [APICS].""" ;
@@ -871,13 +905,17 @@ iof:Machine rdf:type owl:Class ;
 
 ###  http://www.industrialontologies.org/core#ManufacturedProduct
 iof:ManufacturedProduct rdf:type owl:Class ;
-                        rdfs:subClassOf iof:Product ,
-                                        [ rdf:type owl:Class ;
-                                          owl:unionOf ( iof:ManufacturedSystem
-                                                        iof:MaterialArtifact
-                                                      )
-                                        ] ;
-                        iof:definition-NL "Manufactured Product =def. Product that is a Portion of Processed Material, a Material Artifact or a Manufactured System, and is the output of some Product Production Process." ;
+                        owl:equivalentClass [ owl:intersectionOf ( iof:MaterialArtifact
+                                                                   iof:Product
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty cco:is_output_of_at_some_time ;
+                                                                     owl:someValuesFrom iof:ProductProductionProcess
+                                                                   ]
+                                                                 ) ;
+                                              rdf:type owl:Class
+                                            ] ;
+                        iof:definition-NL "A manufactured product is a product that is a of a physical nature and is the output of some product-producing process." ;
+                        iof:definition-SemiFOL "Manufactured Product =def. Product that is a Material Artifact and is an output at some time, of a Product Production Process." ;
                         iof:unresolved_issues """Open action items:
 1. Should we also include Manufactured System?
 2. Should we create term for \"portion of material,\" or perhaps even \"portion of processed material?\"
@@ -901,7 +939,7 @@ iof:ManufacturedSystem rdf:type owl:Class ;
 ###  http://www.industrialontologies.org/core#ManufacturingEnterprise
 iof:ManufacturingEnterprise rdf:type owl:Class ;
                             rdfs:subClassOf iof:BusinessEntity ;
-                            iof:definition-NL "Manufacturing Enterprise =def. Business Entity that intends to sell/sells some Manufactured Product that is realized in some Product Production Process the Business Entity engages in." ;
+                            iof:definition-NL "Manufacturing Enterprise =def. Business Entity that intends to sell some Manufactured Product that is an output of some Product Production Process in which the entity plays a causal role." ;
                             iof:definition_other_common "A manufacturing enterprise is a business entity established to produce goods for sale to wholesalers, retailers or end consumers [bizfluent.com]." ;
                             iof:unresolved_issues """1. Notice the changes from Neil's original definition: \"manufacturing enterprise =def. business entity whose function is to engage in manufacturing enterprise processes.\" 
 
@@ -915,7 +953,7 @@ Main arguments for the changes are: (a) We want more alignment to the SME defini
 ###  http://www.industrialontologies.org/core#ManufacturingEnterpriseProcess
 iof:ManufacturingEnterpriseProcess rdf:type owl:Class ;
                                    rdfs:subClassOf iof:BusinessProcess ;
-                                   iof:definition-NL "Manufacturing Enterprise Process =def. a Business Process that achieves some Objective and where the Objective is carried by a Business Entity, some Manufacturing Enterprise." ;
+                                   iof:definition-SemiFOL "Manufacturing Enterprise Process =def. a Business Process that has Agent, some Manufacturing Enterprise that achieves some Objective carried the Manufacturing Enterprise." ;
                                    iof:unresolved_issues """1. Made a few changes to the definition from what was previously proposed. Many agents, not necessarily those who are members of the manufacturing enterprise, may be playing a causal role in executing the processes of a manufacturing enterprise. E.g., the maintenance worker employeed by an outsourced maintenance service company who is on-premise fixing a broken machine belonging to the manufacturing enterprise. We can't really limit all agents to the manufacturing enterprise or members of it. What we can assert is that a manufacturing enterprise process achieves some objective that is \"carried\" (in BFO lingo) by the manufacturing entity. 
 
 But how do we bound the scope of this? There are many processes performed by 3rd-party agents (logistics providers, suppliers, etc.), that while they directly achieve some objective carried by the enterprise with whom they have a contract, such agent types engage in many subprocesses of such dealing with logistics providers and down-stream suppliers, where there is no clear connection to how these other activities achieve contract terms they may have with some Manufacturing Enterprise (customer). 
@@ -993,22 +1031,25 @@ iof:ManufacturingOperations rdf:type owl:Class ;
 ###  http://www.industrialontologies.org/core#ManufacturingProcess
 iof:ManufacturingProcess rdf:type owl:Class ;
                          rdfs:subClassOf iof:PlannedProcess ;
-                         iof:definition-NL "manufacturing process =def. planned process that has a partially-ordered collection of manufacturing operations and other planned processes, in which some material entity is consumed or modified, and which produces as output, some semi-finished material entity or manufactured product, and is prescribed by some manufacturing process plan." ;
+                         iof:definition-SemiFOL "Manufacturing Process =def. Planned Process that is an occurrent part of a Product Production Process, in which one or more Material Entities are modified or transformed into a material artifact, that is intended to become an continuant part of some Manufactured Product, and is prescribed by some Manufacturing Process Plan." ;
                          iof:definition_other_common """1. The series of operations performed upon material to convert it from the raw material or a semifinished state to a state of further completion. Manufacturing processes can be arranged in a process layout, product layout, cellular layout, or fixed-position layout. Manufacturing processes can be planned to support make-to-stock, make-to-order, assemble-to-order, and so forth, based on the strategic use and placement of inventories [APICS & ISO 15531-43].
 
-2. structured set of activities involving a flow and/or transformation of material, information, energy, or any other element in a manufacturing are [ISO 20140-1].""" ;
+2. A structured set of activities involving a flow and/or transformation of material, information, energy, or any other element in a manufacturing [ISO 20140-1].
+
+3. From Wikipedia:
+(a) (i) A \"manufacturing process\" is the steps through which raw materials are transformed into a final product.
+(a) (ii) A \"manufacturing process\" [is a process in which] raw materials from primary industry are transformed into finished goods on a large scale.
+(b) \"Manufacturing\" is the production of products for use or sale using labor and machines, tools, chemical or biological processing or formulation, and is the essence of secondary industry.""" ;
                          iof:example_complement "statistical process control and preventative maintenance management processes that maximize machine availability and the product quality of manufactured products." ;
-                         iof:unresolved_issues """1. Made changes to the definition above to align it better with the common definitions found in industry. Our prior definition was \"a business process that is an occurrent part of a product production process in which one or more material entities that will be (proper or improper) parts of a manufactured product are modified.\" By aligning more with standard definitions, we can drop term Product Production Process (see arguments under that term's description).  
+                         iof:unresolved_issues """1. Made changes to the definition above to align it better with the common definitions found in industry and based on the feedback from 2019. For back reference, the 2019 JOWO definition was: 
 
-2. Also, we have asserted the term under planned process since other types of organizations (e.g., government entities) may utilize manufacturing processes as part of achieving their objectives.
+manufacturing process =def. planned process that is an occurrent part of a product production process in which one or more material entities that will be part of a manufactured product are modified.
 
-3.. With the new definition, we have some work to do to define relations consumed and modified, and class semi-finished material. 
-
-4. Lastly, does somebody want to formalize relation \"has a partially-ordered collection of?\"""" ;
+2.. With the new definition, we have some work to do to define relations modified and transformed.""" ;
                          cco:example_of_usage "Drilling a hole on an engine block; making a shaft (via milling, turning, and drilling); assembly process (including contract manufacturing); a manufacturing process that uses 3D printing to create the output material entity." ;
                          rdfs:comment """1. This definition presupposes that the outputs of a manufacturing process are in every case material entities. Processes analogous to manufacturing with digital outputs such as pieces of software will be treated at a later stage.
 
-2.. There planned processes that form parts of a manufacturing process include setup, removing or \"tear-down\" of the workpiece and machine afterwards, moving materials from one location to another, inspection, testing, and any planned process that is part of achieving the overall process.""" ;
+2.. There are planned processes that form parts of a manufacturing process include setup, removing or \"tear-down\" of the workpiece and machine afterwards, moving materials from one location to another, inspection, testing, and any planned process that is part of achieving the overall process.""" ;
                          rdfs:label "Manufacturing Process"@en .
 
 
@@ -1136,7 +1177,7 @@ Intangible: people; information systems, automation systems; the water, electric
 
 ###  http://www.industrialontologies.org/core#MeasuredProductQuality
 iof:MeasuredProductQuality rdf:type owl:Class ;
-                           rdfs:subClassOf bfoo:BFO_0000019 ;
+                           rdfs:subClassOf iof:zzzDeprecated ;
                            iof:definition-FOL "measured-product-quality(​x)​ ≡ specifically-dependent-continuant(​x)​ & ​∃​y(​ product(​y​) & inheres-in(​x​, ​y​)) & ​∃​z(measurement-result(​z)​ & is-measured-by(​x​, ​z)​ )" ;
                            iof:definition-NL "def. specifically dependent continuant that inheres in some product and is measured by some measurement information content entity." ;
                            iof:definition_other_common """Distinguishing feature. :
@@ -1261,18 +1302,25 @@ Part of this will be dependent on what definition we settle on for term plan spe
 
 ###  http://www.industrialontologies.org/core#PortionOfInputMaterial
 iof:PortionOfInputMaterial rdf:type owl:Class ;
-                           rdfs:subClassOf bfoo:BFO_0000030 ;
-                           iof:definition-SemiFOL "Portion of Input Material =def. Object when it bears some Input Material Role" ;
+                           owl:equivalentClass [ owl:intersectionOf ( bfoo:BFO_0000040
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty iof:RO_0000087 ;
+                                                                        owl:someValuesFrom iof:InputMaterialRole
+                                                                      ]
+                                                                    ) ;
+                                                 rdf:type owl:Class
+                                               ] ;
+                           iof:definition-SemiFOL "Portion of Input Material =def. Material Entity when it has an Input Material Role (defined class)." ;
                            iof:example_counter "People, machines, tools, & pieces of equipment." ;
-                           iof:unresolved_issues """1. We've previously added the counter examples above but I don't believe they are valid since none of them are inputs to a manufacturing process. Rather, they participate in manufacturing processes via the Used-in or are Agent-in relations.
+                           iof:unresolved_issues """1. We've previously had the counter examples above but I don't believe they are valid since none of them are inputs to a manufacturing process. Rather, they participate in manufacturing processes via the Used-in or are Agent-in relations.
 
 2. Aren't the inputs to a manufacturing process specified in some directive ICE? As in e.g. a process specification, the work instructions, a BOM (picklist), etc.? To be discussed.
 
-3. If we are to introduce a class like this, why not then introduce simply \"Input Material (defined class) =def. Material Entity and bears Input Material Role?\" This will be come useful in definiing Manufacturing Process (see its definition).
+3. Do we need to relabel this to something like 'Portion of Input Material to Manufacturing Process?\" It seems portions of matter could serve as inputs to many more processes than just manufacturing processes.
 
-4. Why is this asserted under material entity? More generally, this issue concerns portions of solids, liquids and gases – perhaps man-made but also as found in nature. As we proceed in adding additional terms to the core IOF ontology to handle various types of portions of solids, liquids and gases – all portions of matter – we will create many sibling classes to object aggregate, object, and fiat object part. That clouds the purpose of these BFO classes. We should only introduce sibling classes here for good reasons. Alternative approaches? Option (a) would be to assert a grouping class under material entity, say “a portion of material,” and put the various portions of xyz beneath it. But in fact, a portion of material and material entity are synonymous. So this would not solve our problem. Alternatively, option (b) would be to put all portions of xyz under object, after all, a rock, a portion of water, and even a portion of gas andd portion of sub-atomic particles, all fit nicely under object and we can come up with arguments on how they satisfy the rules in effect for object, such as satisfying its causal unity criterion (see Barry's arguments for \"rock\" in the BFO 2.0 reference document).
+4. Why is this asserted directly under material entity? As we proceed in adding additional kinds of portions of solids, liquids and gases found in manufacturing we will create many sibling classes under material entity and that, I believe, will cloud the purpose of the BFO foundational classes. Alternative approaches: (a) Assert a grouping class under material entity, say a \"portion of material,” and put the various portions of xyz beneath it. Or (b) put all portions of xyz under object. After all, a rock, a portion of water, and even portions of gas and sub-atomic particles, all fit nicely under object. But then we come up with arguments on how they satisfy the causal unity criterion (see Barry's arguments for \"rock\" in the BFO 2.0 reference document). In offline discussions, Barry's recommendation is option (b), perhaps also with a grouping-level term such as \"portion of material.\"
 
-Note that in CCO, they have \"portion of material\" asserted under \"portion of processed material,\" which is asserted under \"material artifact.\" But certainly portions of input materials to a manufacturing process may ones found in nature (as in water to enable a chemical reaction). So we can't place portion of input material and raw materials under material artifact. Of course, the CCO guys can always argue that the water available on the shop floor for use in a batch chemical process, is in fact processed, as it has traveled from the pond, through a water department's processing plants and piping, to be delivered to the factory. The devil is in the details of how we formalize these terms, and what actually survives the dilution that happens as we express it in OWL;-)""" ;
+5. Whether we introduce a \"portion of material\" class and leave it as a subclass of material entity, or move it under object, don't we need to add yet another class, \"portion of processed material,\" under \"material artifact?\" We can wait to do this for the day we see the need surface in domain working group use cases, but thinking ahead, maybe we already introduce a place-holder for this now. TBD""" ;
                            cco:example_of_usage "Raw material (plastic pellets, sheet metal); sub-assemblies (engine module, IC circuits); components (screws, crank shafts, transistors)" ;
                            rdfs:label "Portion of Input Material"@en .
 
@@ -1326,7 +1374,7 @@ iof:Product rdf:type owl:Class ;
 2. Natural resources: the seashells lying on the beach that some person intends to collect, package and sell; the iron ore in a mountain the rights to which some mining company has just purchased which they intend to mine and sell to iron-making processors. Parcels of real estate some land developer sells to builders.
 
 3. Any manufactured good (see subclass manufactured product).""" ;
-            rdfs:comment "This definition leaves open the possibility that generically dependent continuants, immaterial entities (continuant fiat boundaries, sites and spatial regions), and naturally-occurring entities, may be products. However, the definition does exclude services sold as product which deviates from some industry standard definitions." ;
+            rdfs:comment "This definition leaves open the possibility that generically dependent continuants, immaterial entities (continuant fiat boundaries, sites and spatial regions), and naturally-occurring entities, may be products. However, the definition does exclude services sold as product which deviates from some standard definitions and economic theory." ;
             rdfs:label "Product"@en .
 
 
@@ -1372,14 +1420,30 @@ Action Items:
 
 ###  http://www.industrialontologies.org/core#ProductProductionProcess
 iof:ProductProductionProcess rdf:type owl:Class ;
-                             rdfs:subClassOf iof:ManufacturingEnterpriseProcess ;
-                             iof:definition-FOL "product-production-process(x) ≡ manufacturing-enterprise-process(x) & ∃y(continuant(y) & has-output(x, y) & ∃t ∃t′(occupies-temporal-region(y, t) & first-instant(t′, t) & ¬exists-at(y, t′)" ;
-                             iof:definition-NL "Product Production Process =def. a Manufacturing Enterprise Process that has specified output some Manufactured Product that did not exist at the point of initiation of the process" ;
+                             rdfs:subClassOf iof:ManufacturingEnterpriseProcess ,
+                                             [ rdf:type owl:Class ;
+                                               owl:complementOf [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty bfoo:BFO_0000108 ;
+                                                                  owl:someValuesFrom iof:ManufacturedProduct
+                                                                ]
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty bfoo:BFO_0000199 ;
+                                               owl:someValuesFrom bfoo:BFO_0000202
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty cco:has_output_at_some_time ;
+                                               owl:someValuesFrom iof:ManufacturedProduct
+                                             ] ;
+                             iof:definition-FOL "ProductProductionProcess(x) ≡ ManufacturingEnterpriseProcess(x) ∧ ∃y (ManufacturedProduct(y) ∧ hasOutput(x, y) ∧ ∃t ∃t′ (occupies-temporal-region(y, t) ∧ first-instant(t′, t) ∧ ¬exists-at(y, t′)" ;
+                             iof:definition-SemiFOL "Product Production Process =def. Manufacturing Enterprise Process that has output some Manufactured Product that did not exist at the point of initiation of the process." ;
                              iof:example_complement "Providing a service that does not deliver any tangible good" ;
                              iof:example_counter """1. Acquiring unprocessed raw material (e.g., seashells on the beach) with intention to sell them. The Manufactured Product existed before the initiation of the planned process.
 2. Modification/Refurbishing an existing Manufactured Product? (Is the refurbished Manufactured Product now a new Manufactured Product that did not exist before?)
 3. Handling of waste material/Manufactured Product to be incinerated or land-filled. (NOTE: This sort of process is planned, has an output, and the output did not exist at the point of initiation of the planned process. Because we do not have in our Manufactured Product role definition that Manufactured Products are intended to be sold, we cannot exclude this counter example.)""" ;
-                             iof:unresolved_issues "Do we need this term? It was introduced to (i) differentiate between those processes that produce a Manufactured Product from those that don't, even within the same Manufacturing Enterprise (e.g., planned process for maintaining a machine), and (ii) to serve as a collection class containing all the subprocesses, that when chained together along the time dimension in linear fasion (i.e., no gaps nor overlaps as per BFO parthood rules for process), is such that at the point of initiation you don't have a Manufactured Product, but at the end, as some output, you do. Yet this term as defined has no equivalent notion nor usage in industry and we've had no use case discusions to see how it might add value." ;
+                             iof:unresolved_issues """I think Neil's original intent for this class was to handle any sort of product producing process, including those in the software industry, banking, service industries and in other domains. Question becomes whether we relabel this term to perhaps \"Manufactured Product Production Process\" and reintroduce Neil's original definition?
+
+The argument on why introduced this more narrow definition of the concept is to differentiate between those processes that produce a Manufactured Product from those that produce other non-manufactured products.""" ;
                              cco:example_of_usage "Making of an engine block as a product" ;
                              rdfs:comment """1. A product production process is distinct from a maintenance process in that, in the latter case, the product exists both before and after the process occurs.
 
@@ -1394,7 +1458,8 @@ iof:ProductProductionProcess rdf:type owl:Class ;
 ###  http://www.industrialontologies.org/core#ProductRole
 iof:ProductRole rdf:type owl:Class ;
                 rdfs:subClassOf bfoo:BFO_0000023 ;
-                iof:definition-NL "A role a continuant has because some agent intends to sell it." ;
+                iof:definition-NL "A product role is a role a thing has when an agent intends to sell it." ;
+                iof:definition-SemiFOL "Product Role =def. Role inhering in a Continuant that some Agent intends to sell." ;
                 iof:unresolved_issues """1. Do we want to keep \"intends to sell\" in the definition and as proposed above in the comments? If we keep \"intends to sell\" in the definition, we need to introduce a relation for this.
 
 2. Concerning the \"end of life\" of a product, when a continuant is no longer to carry the product role, do we extend the definition to include this eventuality?""" ;
