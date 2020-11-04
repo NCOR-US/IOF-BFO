@@ -1388,7 +1388,6 @@
                 <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
         <dc:identifier>008-BFO</dc:identifier>
         <rdfs:label xml:lang="en">continuant</rdfs:label>
         <j.0:definition xml:lang="en">(Elucidation) A continuant is an entity that persists, endures, or continues to exist through time while maintaining its identity</j.0:definition>
@@ -1563,7 +1562,6 @@
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000016">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000017"/>
-        <owl:disjointWith rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
         <dc:identifier>062-BFO</dc:identifier>
         <rdfs:label xml:lang="en">disposition</rdfs:label>
         <j.0:altLabel xml:lang="en">internally-grounded realizable entity </j.0:altLabel>
@@ -1578,7 +1576,6 @@
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000017">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000020"/>
-        <owl:disjointWith rdf:resource="http://purl.obolibrary.org/obo/BFO_0000019"/>
         <dc:identifier>058-BFO</dc:identifier>
         <rdfs:label xml:lang="en">realizable entity</rdfs:label>
         <j.0:definition xml:lang="en">(Elucidation) b is a realizable entity means: b is a specifically dependent continuant that inheres in some independent continuant which is not a spatial region and is of a type some instances of which are realized in processes of a correlated type</j.0:definition>
@@ -1866,7 +1863,6 @@
                 <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000038"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="http://purl.obolibrary.org/obo/BFO_0000148"/>
         <dc:identifier>103-BFO</dc:identifier>
         <rdfs:label xml:lang="en">one-dimensional temporal region</rdfs:label>
         <j.0:definition xml:lang="en">(Elucidation) A one-dimensional temporal region is a temporal region is a whole that has a temporal interval and zero or more temporal intervals and temporal instants as parts</j.0:definition>
@@ -2110,40 +2106,6 @@
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000006"/>
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000029"/>
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000140"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000008"/>
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000011"/>
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000015"/>
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000035"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000009"/>
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000018"/>
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000026"/>
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000028"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000142"/>
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000146"/>
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000147"/>
-        </owl:members>
-    </rdf:Description>
 </rdf:RDF>
 
 
